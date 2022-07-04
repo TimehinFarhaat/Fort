@@ -7,6 +7,7 @@ namespace Fort.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
+        public string CertificatePath { get; set; }
         public int Age { get; set; }
         public string Year { get; set; }
         public int UserId { get; set; }

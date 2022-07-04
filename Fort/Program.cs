@@ -15,6 +15,13 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 builder.Services.AddControllers();
+builder.Services.AddCors(cor=>cor.AddPolicy("Fort",appBuilder =>
+{
+    appBuilder.AllowAnyHeader();
+    appBuilder.AllowAnyMethod();
+    appBuilder.AllowAnyOrigin();    
+}));
+builder.Services.AddHttpContextAccessor();  
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -42,6 +49,7 @@ builder.Services.AddScoped<IAnswerService, AnswerService>();
 
 
 string key = "The FORT Application Key For JWT Token and for security";
+
 builder.Services.AddSingleton<IAuthentication>(new Authentication(key));
 builder.Services.AddAuthentication(service =>
 {
@@ -60,8 +68,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseStaticFiles();
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors("Fort");
 
 app.MapControllers();
 

@@ -10,12 +10,14 @@ namespace Fort.Controllers
     public class DoctorController : ControllerBase
     {
         private readonly IDoctorService _doctorService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         
     
 
-        public   DoctorController(IDoctorService doctorService)
+        public   DoctorController(IDoctorService doctorService, IWebHostEnvironment webHostEnvironment)
         {
             _doctorService = doctorService;
+            _webHostEnvironment = webHostEnvironment;
            
             
         }
@@ -24,10 +26,35 @@ namespace Fort.Controllers
         
 
         [HttpPost("RegisterDoctor")]
-        public IActionResult RegisterDoctor(CreateDoctorRequest doctorRequestmodel, int id)
+        public IActionResult RegisterDoctor([FromForm] CreateDoctorRequest doctorRequestmodel, int id)
         {
-            var result = _doctorService.AddDoctor(doctorRequestmodel,id);
-            return Ok(result);
+            var files = HttpContext.Request.Form;
+            if(files.Count != 0)
+            {
+                string certificateDirectory = Path.Combine(_webHostEnvironment.WebRootPath, "DoctorCertificate");
+                Directory.CreateDirectory(certificateDirectory);
+                foreach(var file in files.Files)
+                {
+                    FileInfo fileInfo = new FileInfo(file.FileName);
+                    if(fileInfo.Extension.ToLower() != "pdf")
+                    {
+                        return BadRequest();
+                    }
+                    string doctorCertificate = "doctor" + Guid.NewGuid().ToString().Substring(2, 9) + $"{fileInfo.Extension}";
+                    string fullPath = Path.Combine(certificateDirectory, doctorCertificate);
+                    using(var fileStream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    doctorRequestmodel.Certificate = doctorCertificate;
+                }
+                var result = _doctorService.AddDoctor(doctorRequestmodel, id);
+                return Ok(result); 
+                
+            }
+
+
+            return BadRequest();
         }
 
 

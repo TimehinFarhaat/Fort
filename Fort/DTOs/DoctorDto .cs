@@ -20,6 +20,7 @@
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Specialization { get; set; }
+        public string Certificate { get; set; }
         public int Age { get; set; }
         public string year { get; set; }
 
