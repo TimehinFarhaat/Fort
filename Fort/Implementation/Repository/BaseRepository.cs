@@ -19,6 +19,8 @@ namespace Fort.Implementation
             _context = context ;
         }
 
+
+
         public void Add(T entity)
         {
             _context.Set<T>().Add(entity);
@@ -69,6 +71,8 @@ namespace Fort.Implementation
             return entity.ToList();
         }
 
+      
+
 
 
         public IList<T> GetAll()
@@ -88,7 +92,7 @@ namespace Fort.Implementation
 
       public T    GetByExpression(Expression<Func<T, bool>> expression)
         {
-            var entity= _context.Set<T>().AsQueryable().FirstOrDefault(expression);
+            var entity= _context.Set<T>().FirstOrDefault(expression);
             return entity;
         }
 

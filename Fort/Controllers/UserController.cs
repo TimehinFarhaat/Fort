@@ -21,7 +21,7 @@ namespace Fort.Controllers
         }
 
         [HttpPost("Login")]
-        public  IActionResult Login(LoginUserRequest requestmodel)
+        public  IActionResult Login([FromBody] LoginUserRequest requestmodel)
         {
             var result = _userService.LogIn(requestmodel);
             if (result.Status == false) return BadRequest(result);
@@ -29,10 +29,11 @@ namespace Fort.Controllers
             var logInResponseModel = new LoginResponseModel
             {
                 Status = result.Status,
+                Message=result.Message,
                 Data = result.Data,
                 Token=  _authentication.GenerateToken(result.Data)
             };
-            return Ok(result);
+            return Ok(logInResponseModel);
         }
 
 
@@ -40,10 +41,18 @@ namespace Fort.Controllers
         public IActionResult GetUserDetails(int id)
         {
             var result = _userService.GetUserById(id);
-            if (result.Status == false) return BadRequest(result);
+            if (result.Status == false) return BadRequest(result.Message);
             return Ok(result);
         }
 
+
+        [HttpGet("GetUserDetailsByEmail")]
+        public IActionResult GetUserDetailsByEmail(string email)
+        {
+            var result = _userService.GetUserByEmail(email);
+            if (result.Status == false) return BadRequest(result.Message);
+            return Ok(result);
+        }
 
         [HttpDelete("DeleteUser")]
         public IActionResult DeleteUser(int id)

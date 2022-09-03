@@ -14,7 +14,7 @@ namespace Fort.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "checkUps",
+                name: "CheckUps",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -33,7 +33,7 @@ namespace Fort.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_checkUps", x => x.Id);
+                    table.PrimaryKey("PK_CheckUps", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -43,7 +43,7 @@ namespace Fort.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
+                    Name = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -62,7 +62,7 @@ namespace Fort.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "symptoms",
+                name: "Symptoms",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -79,7 +79,7 @@ namespace Fort.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_symptoms", x => x.Id);
+                    table.PrimaryKey("PK_Symptoms", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -89,8 +89,6 @@ namespace Fort.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserName = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PassWord = table.Column<string>(type: "longtext", nullable: true)
@@ -110,7 +108,7 @@ namespace Fort.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "SymptomCheckup",
+                name: "SymptomCheckups",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -127,17 +125,17 @@ namespace Fort.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SymptomCheckup", x => x.Id);
+                    table.PrimaryKey("PK_SymptomCheckups", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SymptomCheckup_checkUps_CheckUpId",
+                        name: "FK_SymptomCheckups_CheckUps_CheckUpId",
                         column: x => x.CheckUpId,
-                        principalTable: "checkUps",
+                        principalTable: "CheckUps",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SymptomCheckup_symptoms_SymptomId",
+                        name: "FK_SymptomCheckups_Symptoms_SymptomId",
                         column: x => x.SymptomId,
-                        principalTable: "symptoms",
+                        principalTable: "Symptoms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -149,17 +147,6 @@ namespace Fort.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastName = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    EmailAddress = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Password = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -167,7 +154,15 @@ namespace Fort.Migrations
                     LastModifiedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     DeletedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     DeletedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    FirstName = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    LastName = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -187,14 +182,7 @@ namespace Fort.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FirstName = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    LastName = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    EmailAddress = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    Year = table.Column<string>(type: "longtext", nullable: true)
+                    CertificatePath = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Specialization = table.Column<string>(type: "longtext", nullable: true)
@@ -206,7 +194,15 @@ namespace Fort.Migrations
                     LastModifiedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     DeletedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     DeletedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    FirstName = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    LastName = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -226,59 +222,29 @@ namespace Fort.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    userId = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    LastModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    DeletedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     FirstName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastName = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    Year = table.Column<string>(type: "longtext", nullable: true)
+                    PhoneNumber = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    EmailAddress = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ApplicationuserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    LastModifiedBy = table.Column<int>(type: "int", nullable: false),
-                    LastModifiedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    DeletedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    DeletedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    DateOfBirth = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Patients_Users_ApplicationuserId",
-                        column: x => x.ApplicationuserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Questions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    LastModifiedBy = table.Column<int>(type: "int", nullable: false),
-                    LastModifiedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    DeletedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    DeletedBy = table.Column<int>(type: "int", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Questions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Questions_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Patients_Users_userId",
+                        column: x => x.userId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -291,10 +257,8 @@ namespace Fort.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ApplicationUserId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    ApplicationRoleId = table.Column<int>(type: "int", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     LastModifiedBy = table.Column<int>(type: "int", nullable: false),
@@ -310,17 +274,19 @@ namespace Fort.Migrations
                         name: "FK_UserRoles_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserRoles_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "PatientSymptoms",
+                name: "PatientCheckups",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -337,17 +303,53 @@ namespace Fort.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PatientSymptoms", x => x.Id);
+                    table.PrimaryKey("PK_PatientCheckups", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PatientSymptoms_checkUps_CheckUpId",
+                        name: "FK_PatientCheckups_CheckUps_CheckUpId",
                         column: x => x.CheckUpId,
-                        principalTable: "checkUps",
+                        principalTable: "CheckUps",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PatientSymptoms_Patients_PatientId",
+                        name: "FK_PatientCheckups_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Questions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RecievedResponse = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Description = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PatientId = table.Column<int>(type: "int", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    LastModifiedBy = table.Column<int>(type: "int", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    DeletedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Questions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Questions_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Questions_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -359,7 +361,7 @@ namespace Fort.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    DoctorId = table.Column<int>(type: "int", nullable: false),
                     QuestionId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -375,15 +377,15 @@ namespace Fort.Migrations
                 {
                     table.PrimaryKey("PK_Answers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Answers_Questions_QuestionId",
-                        column: x => x.QuestionId,
-                        principalTable: "Questions",
+                        name: "FK_Answers_Doctors_DoctorId",
+                        column: x => x.DoctorId,
+                        principalTable: "Doctors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Answers_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
+                        name: "FK_Answers_Questions_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "Questions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -392,17 +394,22 @@ namespace Fort.Migrations
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "DeletedBy", "DeletedOn", "Description", "IsDeleted", "LastModifiedBy", "LastModifiedOn", "Name" },
-                values: new object[] { 1, 1, new DateTime(2022, 7, 2, 21, 0, 54, 124, DateTimeKind.Local).AddTicks(6089), null, null, "Administrator", false, 1, new DateTime(2022, 7, 2, 21, 0, 54, 124, DateTimeKind.Local).AddTicks(6093), "Admin" });
-
-            migrationBuilder.InsertData(
-                table: "UserRoles",
-                columns: new[] { "Id", "ApplicationRoleId", "ApplicationUserId", "CreatedBy", "CreatedOn", "DeletedBy", "DeletedOn", "IsDeleted", "LastModifiedBy", "LastModifiedOn", "RoleId", "UserId" },
-                values: new object[] { 1, 1, 1, 1, new DateTime(2022, 7, 2, 21, 0, 54, 124, DateTimeKind.Local).AddTicks(6134), null, null, false, 1, new DateTime(2022, 7, 2, 21, 0, 54, 124, DateTimeKind.Local).AddTicks(6137), null, null });
+                values: new object[] { 1, 0, new DateTime(2022, 7, 26, 8, 46, 29, 268, DateTimeKind.Utc).AddTicks(5301), null, null, "Administrator", false, 0, new DateTime(2022, 7, 26, 8, 46, 29, 268, DateTimeKind.Utc).AddTicks(5303), "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "CreatedBy", "CreatedOn", "DeletedBy", "DeletedOn", "Email", "IsDeleted", "LastModifiedBy", "LastModifiedOn", "PassWord", "UserName" },
-                values: new object[] { 1, 1990, new DateTime(2022, 7, 2, 21, 0, 54, 124, DateTimeKind.Local).AddTicks(4386), null, null, "mary@mail.com", false, 0, new DateTime(2022, 7, 2, 20, 0, 54, 124, DateTimeKind.Utc).AddTicks(4372), "May", "Maryam" });
+                columns: new[] { "Id", "CreatedBy", "CreatedOn", "DeletedBy", "DeletedOn", "Email", "IsDeleted", "LastModifiedBy", "LastModifiedOn", "PassWord" },
+                values: new object[] { 1, 0, new DateTime(2022, 7, 26, 8, 46, 29, 268, DateTimeKind.Utc).AddTicks(5276), null, null, "maryam@mail.com", false, 0, new DateTime(2022, 7, 26, 8, 46, 29, 268, DateTimeKind.Utc).AddTicks(5284), "12345" });
+
+            migrationBuilder.InsertData(
+                table: "Admins",
+                columns: new[] { "Id", "Age", "CreatedBy", "CreatedOn", "DateOfBirth", "DeletedBy", "DeletedOn", "FirstName", "IsDeleted", "LastModifiedBy", "LastModifiedOn", "LastName", "PhoneNumber", "UserId" },
+                values: new object[] { 1, 0, 1, new DateTime(2022, 7, 26, 9, 46, 29, 268, DateTimeKind.Local).AddTicks(5348), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Ada", false, 1, new DateTime(2022, 7, 26, 9, 46, 29, 268, DateTimeKind.Local).AddTicks(5409), "Obi", null, 1 });
+
+            migrationBuilder.InsertData(
+                table: "UserRoles",
+                columns: new[] { "Id", "CreatedBy", "CreatedOn", "DeletedBy", "DeletedOn", "IsDeleted", "LastModifiedBy", "LastModifiedOn", "RoleId", "UserId" },
+                values: new object[] { 1, 0, new DateTime(2022, 7, 26, 8, 46, 29, 268, DateTimeKind.Utc).AddTicks(5314), null, null, false, 0, new DateTime(2022, 7, 26, 8, 46, 29, 268, DateTimeKind.Utc).AddTicks(5317), 1, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_UserId",
@@ -411,14 +418,14 @@ namespace Fort.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Answers_DoctorId",
+                table: "Answers",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Answers_QuestionId",
                 table: "Answers",
                 column: "QuestionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Answers_UserId",
-                table: "Answers",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Doctors_UserId",
@@ -427,19 +434,24 @@ namespace Fort.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Patients_ApplicationuserId",
-                table: "Patients",
-                column: "ApplicationuserId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PatientSymptoms_CheckUpId",
-                table: "PatientSymptoms",
+                name: "IX_PatientCheckups_CheckUpId",
+                table: "PatientCheckups",
                 column: "CheckUpId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PatientSymptoms_PatientId",
-                table: "PatientSymptoms",
+                name: "IX_PatientCheckups_PatientId",
+                table: "PatientCheckups",
+                column: "PatientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patients_userId",
+                table: "Patients",
+                column: "userId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Questions_PatientId",
+                table: "Questions",
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
@@ -448,13 +460,13 @@ namespace Fort.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SymptomCheckup_CheckUpId",
-                table: "SymptomCheckup",
+                name: "IX_SymptomCheckups_CheckUpId",
+                table: "SymptomCheckups",
                 column: "CheckUpId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SymptomCheckup_SymptomId",
-                table: "SymptomCheckup",
+                name: "IX_SymptomCheckups_SymptomId",
+                table: "SymptomCheckups",
                 column: "SymptomId");
 
             migrationBuilder.CreateIndex(
@@ -477,31 +489,31 @@ namespace Fort.Migrations
                 name: "Answers");
 
             migrationBuilder.DropTable(
-                name: "Doctors");
+                name: "PatientCheckups");
 
             migrationBuilder.DropTable(
-                name: "PatientSymptoms");
-
-            migrationBuilder.DropTable(
-                name: "SymptomCheckup");
+                name: "SymptomCheckups");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
+                name: "Doctors");
+
+            migrationBuilder.DropTable(
                 name: "Questions");
 
             migrationBuilder.DropTable(
-                name: "Patients");
+                name: "CheckUps");
 
             migrationBuilder.DropTable(
-                name: "checkUps");
-
-            migrationBuilder.DropTable(
-                name: "symptoms");
+                name: "Symptoms");
 
             migrationBuilder.DropTable(
                 name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "Patients");
 
             migrationBuilder.DropTable(
                 name: "Users");

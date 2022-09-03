@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "qpNjaJjmV2bLMxChEbmuWGPw2KICF+quUTumcAmQsqo=",
+  "Hash": "A7ti/5rx9lAB8sQ+aHFepNTGZkedNw7oHV/R8z5Yyng=",
   "Source": "Fort",
   "BasePath": "_content/Fort",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Fort\\wwwroot",
+      "Source": "Fort",
+      "ContentRoot": "D:\\staa99\\Desktop\\My Project\\Fort\\Fort\\wwwroot\\",
+      "BasePath": "_content/Fort",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

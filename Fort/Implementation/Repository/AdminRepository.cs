@@ -18,7 +18,7 @@ namespace Fort.Implementation.Repository
 
         public IList<Admin> GetAdmins()
         {
-            var admins = _context.Admins.Include(x=>x.ApplicationUser).Where(i=>i.IsDeleted==false).ToList(); 
+            var admins = _context.Admins.Include(x=>x.User).Where(i=>i.IsDeleted==false).ToList(); 
            return admins;
         }
 
@@ -26,14 +26,18 @@ namespace Fort.Implementation.Repository
 
         public Admin GetAdmin(int id)
         {
-            var s = _context.Admins.FirstOrDefault(o => o.Id == id);
-            if(s == null)
-            {
-                return null;
-            }
-            var admin = _context.Admins.Include(x => x.ApplicationUser).FirstOrDefault(x => x.Id == id&& x.IsDeleted==false);    
+           
+            var admin = _context.Admins.Include(x => x.User).ThenInclude(t=>t.UserRoles).ThenInclude(r=>r.Role).FirstOrDefault(x => x.UserId == id&& x.IsDeleted==false);    
             return admin;
         }
+
+        public Admin GetAdmin(string email)
+        {
+
+            var admin = _context.Admins.Include(x => x.User).ThenInclude(y=>y.UserRoles).ThenInclude(y=>y.Role).FirstOrDefault(x => x.User.Email == email && x.IsDeleted == false);
+            return admin;
+        }
+
     }
-    
+
 }

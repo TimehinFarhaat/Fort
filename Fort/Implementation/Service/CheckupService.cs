@@ -9,16 +9,24 @@ namespace Fort.Implementation.Service
     {
         private readonly ICheckupRepository _checkupRepository;
         private readonly IPatientRepository _patientRepository;
+        private readonly IPatientCheckupRepository _patientcheckupRepository;
+        private readonly ISymptomRepository _symptomRepository;
+        private readonly ISymptomCheckupRepository _symptomCheckupRepository;
+        private readonly IUserRepository _userRepository;
 
 
 
 
 
 
-        public CheckupService(ICheckupRepository checkupRepository, IPatientRepository patientRepository)
+        public CheckupService(ICheckupRepository checkupRepository, IPatientRepository patientRepository, IPatientCheckupRepository patientcheckupRepository, ISymptomRepository symptomRepository, ISymptomCheckupRepository symptomCheckupRepository,IUserRepository userRepository)
         {
             _checkupRepository = checkupRepository;
             _patientRepository = patientRepository;
+            _patientcheckupRepository = patientcheckupRepository;
+            _symptomRepository = symptomRepository;
+             _symptomCheckupRepository = symptomCheckupRepository;
+            _userRepository=userRepository;
         }
 
 
@@ -27,18 +35,75 @@ namespace Fort.Implementation.Service
 
         public BaseResponse CreateCheckup(CreateCheckupRequest checkrequest,int patientId )
         {
+            var patient=_patientcheckupRepository.GetPatientByUserId(patientId);
+           if(patient== null)
+            {
+                return new BaseResponse
+                {
+                    Message = "patient not found",
+                    Status = false
+                };
+            }
             var check = new CheckUp
             {
-                CreatedBy=patientId,
-                Description=checkrequest.Description,
-                Name=checkrequest.Name,
-              
-                
+
+                Description = checkrequest.Description,
+                Name = checkrequest.Name,
             };
-             _checkupRepository.Add(check);
+
+            _checkupRepository.Add(check);
+
+            foreach (var sympton in checkrequest.Symptoms)
+            {
+                var symptom = new Symptom()
+                {
+                    Name = sympton,
+                    CreatedBy = patient.userId,
+
+                };
+
+                var exist = _symptomRepository.GetSymptom(sympton);
+                if (exist == null)
+                {
+                    _symptomRepository.Add(symptom);
+                    var symptomchecks = new SymptomCheckup()
+                    {
+                        Checkup = check,
+                        CheckUpId = check.Id,
+                        Symptom = symptom,
+                        SymptomId = symptom.Id
+
+                    };
+                    _symptomCheckupRepository.Add(symptomchecks);
+                }
+                else
+                {
+                    var symptomcheck = new SymptomCheckup()
+                    {
+                        Checkup = check,
+                        CheckUpId = check.Id,
+                        Symptom = symptom,
+                        SymptomId = exist.Id,
+
+                    };
+                    _symptomCheckupRepository.Add(symptomcheck);
+                }
+            }
+            var checkup = new PatientCheckup
+            {
+                CreatedBy = patientId,
+                Checkup = check,
+                CheckUpId = check.Id,
+                Patient = patient,
+                LastModifiedBy = patient.Id,
+                PatientId = patient.Id,
+            };
+
+            _patientcheckupRepository.Add(checkup);
+
             return new BaseResponse
             {
-                Message = "Successfully created",
+                Message = " checkUp Successfully created",
                 Status = true
             };
         }
@@ -67,22 +132,35 @@ namespace Fort.Implementation.Service
 
         public CheckupResponseModel GetPreviouscheckup(int patientId)
         {
-            var check = _checkupRepository.GetPreviouscheckUp(patientId);
+
+            var checks = _checkupRepository.GetpatientcheckUps(patientId);
+            if(checks.Count > 0)
+            {
+                var check=checks[checks.Count-1];
+                return new CheckupResponseModel
+                {
+                    Data = new CheckupDto
+                    {
+
+                        Id = check.Checkup.Id,
+                        Description = check.Checkup.Description,
+                        Name = check.Checkup.Name,
+
+                        SymptomDto = check.Checkup.SymptomCheckups.Select(i => new SymptomDto
+                        {
+                            SymptomName = i.Symptom.Name,
+                            SymptomId = i.Symptom.Id,
+                        }).ToList(),
+                    },
+                    Message = "get successful",
+                    Status = true
+                };
+            }
+
             return new CheckupResponseModel
             {
-                Data = new CheckupDto
-                {
-
-                    Id = check.Id,
-                    Description = check.Description,
-                    Name = check.Name,
-                    Symptoms = check.SymptomCheckups.Select(i => new SymptomDto
-                    {
-                        SymptomName=i.Symptom.Name,
-                        SymptomId=i.Symptom.Id,
-                    }).ToList(),
-                },
-                Message = "get successful",
+                
+                Message = "No checkup record",
                 Status = true
             };
         }
@@ -92,17 +170,28 @@ namespace Fort.Implementation.Service
 
         public CheckupResponseModels GetCheckUpByPatientId(int patientId)
         {
-            var patient = _patientRepository.Getpatient(patientId);
+            var patient1= _patientRepository.GetpatientById(patientId);
+
+            if (patient1 == null)
+            {
+                return new CheckupResponseModels
+                {
+                    Message = "get Unsuccessful",
+                    Status = false
+                };
+            }
+            var patientCheckup= _checkupRepository.GetpatientcheckUps(patient1.Id);
+
 
             return new CheckupResponseModels
             {
-                Data = patient.PatientCheckup.Select(check => new CheckupDto
+                Data = patientCheckup.Select(check => new CheckupDto
                 {
                     Id = check.Id,
                     Description = check.Checkup.Description,
                     Name = check.Checkup.Name,
 
-                    Symptoms = check.Checkup.SymptomCheckups.Select(c => new SymptomDto
+                    SymptomDto = check.Checkup.SymptomCheckups.Select(c => new SymptomDto
                     {
                         SymptomId = c.SymptomId,
                         SymptomName = c.Symptom.Name,
@@ -112,7 +201,7 @@ namespace Fort.Implementation.Service
 
                     Message = "get successful",
                     Status = true
-                };
+            };
             
         }
 

@@ -13,56 +13,89 @@ namespace Fort.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(new User
+
+            
+
+            modelBuilder.Entity<PatientCheckup>().HasKey(pc => pc.Id);
+            modelBuilder.Entity<SymptomCheckup>().HasKey(u => u.Id);
+
+            modelBuilder.Entity<PatientCheckup>().HasOne<Patient>(c => c.Patient).WithMany(s => s.PatientCheckup).HasForeignKey(d => d.PatientId);
+
+            modelBuilder.Entity<PatientCheckup>().HasOne<CheckUp>(c => c.Checkup).WithMany(s => s.PatientCheckups).HasForeignKey(d => d.CheckUpId);
+
+
+
+
+
+
+
+
+
+
+            var user = new User
             {
                 Id = 1,
-                UserName = "Maryam",
-                PassWord = "May",
-                Email = "mary@mail.com",
-                CreatedOn = DateTime.Now,
-                CreatedBy =1990,
-                IsDeleted = false,
+                Email = "maryam@mail.com",
+                Gender = "Female",
+                Age=64,
+                PhoneNumber="0804675464",
+                PassWord = BCrypt.Net.BCrypt.HashPassword("12345"),
 
-            });
+            };
 
-            modelBuilder.Entity<Role>().Property(u => u.Name).IsRequired();
-
-            modelBuilder.Entity<Role>().HasData(new Role
+            var rol = new Role
             {
                 Id = 1,
                 Name = "Admin",
-                Description = "Administrator",
-                CreatedBy = 1,
-                IsDeleted = false,
-                LastModifiedBy = 1,
-                CreatedOn=DateTime.Now,
-                LastModifiedOn=DateTime.Now, 
-            });
-
-
-            modelBuilder.Entity<User_role>().HasData(new User_role
+                Description = "Administrator"
+            };
+            var Userrol = new UserRole
             {
-                Id=1,
-                CreatedOn=DateTime.Now,
-                ApplicationRoleId = 1,
-                ApplicationUserId = 1,
-                CreatedBy=1,
-                LastModifiedBy=1,
-                IsDeleted=false,
-                LastModifiedOn=DateTime.Now,
-                
-            });
+                Id = 1,
+                RoleId = rol.Id,
+
+                UserId = user.Id,
+            };
+
+
+            var admin = new Admin
+            {
+                Id = 1,
+                UserId = user.Id,
+                FirstName="Ada",
+                LastName="Obi",
+                CreatedOn = DateTime.Now,
+                CreatedBy = user.Id,
+                LastModifiedBy = user.Id,
+                LastModifiedOn = DateTime.Now,
+                IsDeleted = false
+            };
+
+
+            modelBuilder.Entity<Role>(u => u.HasData(rol));
+            modelBuilder.Entity<Admin>(u => u.HasData(admin));
+            modelBuilder.Entity<User>(u => u.HasData(user));
+            modelBuilder.Entity<UserRole>(u => u.HasData(Userrol));
+
+
+
         }
+    
         public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<User_role> UserRoles { get; set; }
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles{ get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
-        public DbSet<PatientCheckup> PatientSymptoms { get; set; }
-        public DbSet<CheckUp> checkUps { get; set; }
+        public DbSet<PatientCheckup> PatientCheckups { get; set; }
+        public DbSet<CheckUp> CheckUps { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Rating>Ratings { get; set; }
         public DbSet<Answer> Answers { get; set; }
-        public DbSet<Symptom> symptoms { get; set; }
+        public DbSet<Symptom> Symptoms { get; set; }
+        public DbSet<SymptomCheckup> SymptomCheckups{ get; set; }
+   
+    
+      
     }
 }

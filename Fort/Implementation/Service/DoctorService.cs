@@ -7,61 +7,99 @@ using Fort.Model;
 namespace Fort.Implementation.Service
 {
     public class DoctorService : IDoctorService
-    {
+    {   
+
         private readonly IDoctorRepository _doctorRepository;
+        private readonly IPatientRepository _patientRepository;
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
 
-        public DoctorService(IDoctorRepository doctorRepository, IUserRepository userRepository, IRoleRepository roleRepository)
+        public DoctorService(IDoctorRepository doctorRepository, IUserRepository userRepository, IRoleRepository roleRepository,IPatientRepository patientRepository)
         {
             _doctorRepository = doctorRepository ;
             _userRepository = userRepository ;
-            _roleRepository = roleRepository ;
+             _roleRepository = roleRepository;
+            _patientRepository = patientRepository ;
+
         }
+
 
         public BaseResponse AddDoctor(CreateDoctorRequest Doctorrequest, int AdminId)
         {
+            var a = _userRepository.GetByExpression(s => s.Email == Doctorrequest.Email);
+
+            if (a != null)
+            {
+                return new BaseResponse
+                {
+                    Message = "Patient already exist",
+                    Status = false
+                };
+            }
             var user = new User
             {
-                UserName = Doctorrequest.FirstName,
                 Email = Doctorrequest.Email,
-                PassWord = Doctorrequest.PassWord,
+                PassWord = BCrypt.Net.BCrypt.HashPassword(Doctorrequest.PassWord),
                 CreatedBy = AdminId,
+                PhoneNumber = Doctorrequest.PhoneNumber,
+                Age = Doctorrequest.Age,
+                Gender= Doctorrequest.Gender,
+                CreatedOn = DateTime.Now,
+                IsDeleted = false,
+                
+                LastModifiedBy = AdminId,
+                
             };
-            _userRepository.Add(user);
-            var roles = _roleRepository.GetByExpression(r => r.Name == "Doctor");
+            List<string> s = new List<string> { "Admin" };
 
-            var userRole = new User_role
-            {
-                ApplicationUserId = user.Id,
-                User = user,
-                ApplicationRoleId = roles.Id,
-                Role = roles,
-                CreatedBy = AdminId
-            };
+            var roles = _roleRepository.GetSelectedUserRole(s);
 
-            user.ApplicationUserRoles.Add(userRole);
-
-
-            _userRepository.Add(user);
             var doctor = new Doctor
             {
                 FirstName = Doctorrequest.FirstName,
                 LastName = Doctorrequest.LastName,
-                EmailAddress = Doctorrequest.Email,
+                User = user,
+                CreatedOn = DateTime.Now,
+                IsDeleted = false,
+               
+               
+               CertificatePath=Doctorrequest.Certificate,
+               Specialization=Doctorrequest.Specialization,
+                LastModifiedBy = AdminId,
                 CreatedBy = AdminId,
-                Age = Doctorrequest.Age,
-                Year = Doctorrequest.year,
                 UserId = user.Id
             };
 
+            foreach (var role in roles)
+            {
+                var userRole = new UserRole
+                {
+                    CreatedOn = DateTime.Now,
+                    IsDeleted = false,
+                    LastModifiedBy = AdminId,
+                    CreatedBy = AdminId,
+                    Role = role,
+                    RoleId = role.Id,
+                    User = user,
+                    UserId = user.Id
+                };
+                user.UserRoles.Add(userRole);
+            }
             _doctorRepository.Add(doctor);
+           
+            _userRepository.Add(user);
+
             return new BaseResponse
             {
                 Message = "Successfully added",
                 Status = true
             };
         }
+
+
+
+
+
 
 
 
@@ -88,9 +126,12 @@ namespace Fort.Implementation.Service
 
 
 
+
+
+
         public DoctorResponsModel GetDoctor(string email)
         {
-            var doctor = _doctorRepository.GetByExpression(c=>c.EmailAddress==email);
+            var doctor = _doctorRepository.GetByExpression(c=>c.User.Email==email);
             if (doctor != null)
             {
                 return new DoctorResponsModel
@@ -100,8 +141,11 @@ namespace Fort.Implementation.Service
                         Id = doctor.Id,
                         FirstName = doctor.FirstName,
                         LastName = doctor.LastName,
-                        Email = doctor.EmailAddress,
-                        Specialization = doctor.Specialization
+                        Email = doctor.User.Email,
+                        Gender=doctor.User.Gender,
+                        Specialization = doctor.Specialization,
+                        PhoneNumber = doctor.User.PhoneNumber,
+                       
 
                     },
                     Message = "Successfully added",
@@ -117,6 +161,12 @@ namespace Fort.Implementation.Service
                 Status = true
             };
         }
+
+
+
+
+
+
 
 
         public DoctorResponsModel GetDoctorById(int id)
@@ -137,8 +187,11 @@ namespace Fort.Implementation.Service
                     Id = doctor.Id,
                     FirstName = doctor.FirstName,
                     LastName = doctor.LastName,
-                    Email = doctor.EmailAddress,
-                    Specialization = doctor.Specialization
+                    userRoles = doctor.User.UserRoles.Select(e => e.Role.Name).ToList(),
+                    Email = doctor.User.Email,
+                    Gender= doctor.User.Gender,
+                    Specialization = doctor.Specialization,
+                    PhoneNumber = doctor.User.PhoneNumber,
 
                 },
                 Message = "succesfully get",
@@ -149,9 +202,70 @@ namespace Fort.Implementation.Service
         }
 
 
+
+
+
+        public BaseResponse ApproveDoctor(int id)
+        {
+            var doctor = _doctorRepository.GetByExpression(c => c.Id== id);
+            if (doctor == null) return new BaseResponse
+            {
+                Message = "Doctor does not  exsist",
+                Status = false
+            };
+            else
+            {
+                doctor.ValidateDoctor = Approval.Approve;
+                _doctorRepository.Update(doctor);
+                return new BaseResponse
+                {
+                    Message = "Doctor approved",
+                    Status = true
+                };
+            }
+        }
+
+
+
+
+
+
+        public BaseResponse DisapproveDoctor(int id)
+        {
+            var doctor = _doctorRepository.GetByExpression(c => c.Id == id);
+            if (doctor == null) return new BaseResponse
+            {
+                Message = "Doctor does not  exsist",
+                Status = false
+            };
+            else
+            {
+                doctor.ValidateDoctor = Approval.Decline;
+                _doctorRepository.Update(doctor);
+                return new BaseResponse
+                {
+                    Message = "Doctor approved",
+                    Status = true
+                };
+            }
+        }
+
+
+
+
+
+
         public DoctorsResponseModel GetDoctors()
         {
             var doctors = _doctorRepository.GetDoctors();
+            if (doctors.Count==0)
+            {
+                return new DoctorsResponseModel
+                {
+                    Message = "unSuccessful",
+                    Status = false,
+                };
+            }
             return new DoctorsResponseModel
             {
                 Data = doctors.Select(doctor=>new DoctorDto
@@ -159,21 +273,27 @@ namespace Fort.Implementation.Service
                     Id = doctor.Id,
                     FirstName = doctor.FirstName,
                     LastName = doctor.LastName,
-                    Email = doctor.EmailAddress,
-                    Specialization = doctor.Specialization
+                    Email = doctor.User.Email,
+                    Specialization = doctor.Specialization,
+                    PhoneNumber = doctor.User.PhoneNumber,
                 }).ToList(),
                
-                Message = "Successfully added",
+                Message = "Successful",
                 Status = true
 
 
             };
         }
 
+
+
+
+
         public BaseResponse UpdateDoctor(UpdateDoctorRequest request, int id)
         {
-            var doctor = _doctorRepository.GetDoctor(id);
+            
             var user = _userRepository.GetUser(id);
+            
 
             if (user == null)
             {
@@ -183,15 +303,25 @@ namespace Fort.Implementation.Service
                     Message = "Does not exist"
                 };
             }
+            var doctor = _doctorRepository.GetDoctor(user.Id);
 
             {
-                doctor.Age = request.Age;
-                doctor.ApplicationUser = user;
-                doctor.EmailAddress = request.EmailAddress;
-                doctor.LastModifiedBy = user.Id;
-                doctor.Id = user.Id;
+                var roles = _roleRepository.GetUserRole(user.Id);
+                doctor.FirstName = request.FirstName;
+                doctor.LastName = request.LastName;
+                doctor.User.Age = request.Age;
+                doctor.User = user;
+                doctor.User.Email = request.EmailAddress;
+                user.Email = request.EmailAddress;
+                user.PassWord = BCrypt.Net.BCrypt.HashPassword(request.PassWord);
+                doctor.User.PhoneNumber = request.PhoneNumber;
+                user.CreatedBy = user.Id;
+                user.LastModifiedBy = user.Id;
+           
+              
+                
+              
             };
-
             _userRepository.Update(user);
             _doctorRepository.Update(doctor);
             return new BaseResponse

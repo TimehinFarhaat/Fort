@@ -21,8 +21,9 @@ builder.Services.AddCors(cor=>cor.AddPolicy("Fort",appBuilder =>
     appBuilder.AllowAnyMethod();
     appBuilder.AllowAnyOrigin();    
 }));
-builder.Services.AddHttpContextAccessor();  
+builder.Services.AddHttpContextAccessor();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddHostedService<SmsBackgroundTasks>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
@@ -31,17 +32,24 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 builder.Services.AddScoped<ICheckupRepository, CheckupRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IResponseService, ResponseService>();
+builder.Services.AddScoped<IRatingRepository, RatingRepository>();
+builder.Services.AddScoped<ISymptomRepository, SymptomRepository>();
+builder.Services.AddScoped<ISymptomCheckupRepository, SymptomCheckupRepository>();
+builder.Services.AddScoped<IPatientCheckupRepository, PatientCheckupRepository>();
 builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
-builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+
 
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<IDoctorService, DoctorService>();
-builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IRatingService, RatingService>();
 builder.Services.AddScoped<ICheckupService, CheckupService>();
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IAnswerService, AnswerService>();

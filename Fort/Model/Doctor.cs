@@ -2,17 +2,14 @@
 using Fort.Identity;
 namespace Fort.Model
 {
-    public class Doctor:Auditable_entity
+    public class Doctor:Person
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string EmailAddress { get; set; }
+     
         public string CertificatePath { get; set; }
-        public int Age { get; set; }
-        public string Year { get; set; }
         public int UserId { get; set; }
+        public ICollection<Answer> Answers { get; set; } = new HashSet<Answer>();
         public string Specialization { get; set; }
         public Approval ValidateDoctor { get; set; }
-        public User ApplicationUser { get; set; }
+        public User User { get; set; }
     }
 }

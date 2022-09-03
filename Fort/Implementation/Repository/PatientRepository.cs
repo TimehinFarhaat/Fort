@@ -10,18 +10,24 @@ namespace Fort.Implementation.Repository
         public PatientRepository(ApplicationContext applicationContext) : base(applicationContext)
         {
         }
-        public Patient Getpatient(int id)
+        public Patient GetpatientById(int id)
         {
-            var patient = _context.Patients.Include(u => u.ApplicationUser).FirstOrDefault(u => u.Id == id && u.IsDeleted == false );
+            var patient = _context.Patients.Include(u=>u.User).ThenInclude(a=> a.UserRoles).ThenInclude(r=>r.Role).SingleOrDefault(u => u.userId == id && u.IsDeleted == false );
             return patient;
         }
 
-        
+        public Patient GetpatientByEmail(string email)
+        {
+            var patient = _context.Patients.Include(u => u.User).ThenInclude(y=>y.UserRoles).ThenInclude(r=>r.Role).SingleOrDefault(u => u.User.Email == email && u.IsDeleted == false);
+            return patient;
+        }
+
+
 
 
         public IList<Patient> GetPatients()
         {
-            var patients = _context.Patients.Include(u => u.ApplicationUser).Where(o=>o.IsDeleted==false).ToList();
+            var patients = _context.Patients.Include(u => u.User).Where(o=>o.IsDeleted==false).ToList();
             return patients;
         }
     }

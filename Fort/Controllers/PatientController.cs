@@ -24,7 +24,7 @@ namespace Fort.Controllers
 
 
         [HttpPost("RegisterPatient")]
-        public IActionResult RegisterDoctor(CreatePatientRequest patientRequest)
+        public IActionResult Registerpatient([FromForm]CreatePatientRequest patientRequest)
         {
             var result = _patientService.AddPatient(patientRequest);
             return Ok(result);
@@ -38,8 +38,20 @@ namespace Fort.Controllers
             return Ok(result);
         }
 
+        [HttpGet("GetPatientDetailsByEmail")]
+        public IActionResult GetDoctorDetailsByEmail(string email)
+        {
+            var result = _patientService.GetPatientByEmail(email);
+            return Ok(result);
+        }
 
-     
+        [HttpGet("GetAllPatients")]
+        public IActionResult GetAllPatients()
+        {
+            var result = _patientService.GetPatients();
+            return Ok(result);
+        }
+
 
 
         [HttpDelete("DeletePatient")]
@@ -51,7 +63,7 @@ namespace Fort.Controllers
 
 
         [HttpPatch("Updatepatient")]
-        public IActionResult UpdateDoctor(UpdatePatientRequest updatePatientRequest, int id)
+        public IActionResult UpdateDoctor([FromForm] UpdatePatientRequest updatePatientRequest, int id)
         {
             var result = _patientService.UpdatePatient(updatePatientRequest, id);
             return Ok(result);

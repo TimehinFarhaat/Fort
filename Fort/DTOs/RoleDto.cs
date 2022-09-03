@@ -8,7 +8,7 @@ namespace Fort.DTOs
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public ICollection<User_role> Roles { get; set; }=new HashSet<User_role>();
+        public ICollection<UserRole> Roles { get; set; }=new HashSet<UserRole>();
     }
 
 

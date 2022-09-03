@@ -14,13 +14,13 @@ namespace Fort.Implementation.Repository
 
         public Doctor GetDoctor(int id)
         {
-            var doctor = _context.Doctors.Include(u => u.ApplicationUser).FirstOrDefault(u => u.Id == id&& u.ValidateDoctor== Approval.Approve&&u.IsDeleted==false);
+            var doctor = _context.Doctors.Include(u => u.User).ThenInclude(e=>e.UserRoles).ThenInclude(e=>e.Role).FirstOrDefault(u => u.User.Id== id&& u.IsDeleted==false);
             return doctor;
         }
 
         public IList<Doctor> GetDoctors()
         {
-            var doctors = _context.Doctors.Include(u => u.ApplicationUser).Where(u => u.ValidateDoctor == Approval.Approve && u.IsDeleted==false).ToList();
+            var doctors = _context.Doctors.Include(u => u.User).Where(u => u.ValidateDoctor == Approval.Approve && u.IsDeleted==false).ToList();
             return doctors;
         }
     }

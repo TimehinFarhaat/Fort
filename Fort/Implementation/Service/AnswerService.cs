@@ -8,25 +8,33 @@ namespace Fort.Implementation.Service
 {
     public class AnswerService : IAnswerService
     {
-        private readonly IRoleRepository _roleRepository;
+        
         private readonly IAdminRepository _adminRepository;
         private readonly IUserRepository _userRepository;
         private readonly IAnswerRepository _answerRepository;
+        private readonly IDoctorRepository _doctorRepository;
         private readonly IQuestionRepository _questionRepository;
-        public AnswerService(IRoleRepository roleRepository, IAdminRepository adminRepository, IUserRepository userRepository, IQuestionRepository questionRepository,IAnswerRepository answerRepository)
+        private readonly IResponseService _responseService;
+        public AnswerService( IAdminRepository adminRepository, IUserRepository userRepository, IQuestionRepository questionRepository,IAnswerRepository answerRepository,IResponseService responseService,IDoctorRepository doctorRepository)
         {
-            _roleRepository = roleRepository;
+            
             _adminRepository = adminRepository;
+            _doctorRepository = doctorRepository;
             _userRepository = userRepository;
             _questionRepository = questionRepository;
             _answerRepository = answerRepository;
+            _responseService = responseService;
         }
 
-        public BaseResponse CreateAnswer(CreateAnswerRequest answers, int questionID)
+        public BaseResponse CreateAnswer(CreateAnswerRequest answers, int questionID, int DoctorId)
         {
-            var question = _questionRepository.GetByExpression(c => c.Id == questionID);
-            if (question == null)
+            var question = _questionRepository.GetQuestionById( questionID);
+            var user = _userRepository.GetByExpression(c => c.Id == DoctorId);
+
+
+            if (question == null || user == null)
             {
+
                 return new BaseResponse
                 {
                     Message = "question not available",
@@ -35,53 +43,48 @@ namespace Fort.Implementation.Service
             }
             else
             {
+                var doctor = _doctorRepository.GetDoctor(user.Id);
+                if (doctor == null)
+                {
+                    return new BaseResponse
+                    {
+                        Message = "doctor not available",
+                        Status = false
+                    };
+                }
                 var answer = new Answer
                 {
                     Description = answers.Description,
-                    QuestionId = questionID,
+                    QuestionId = question.Id,
                     Question = question,
-                 
+                    DoctorId = doctor.Id,
+                    CreatedBy=doctor.Id,
+                    Doctor = doctor,
+                    CreatedOn = DateTime.Now,
+
+
                 };
                 _answerRepository.Add(answer);
+                var response = _responseService.SendResponse(user.PhoneNumber);
+                if (response.Status != TaskStatus.Faulted)
+                {
+                    return new BaseResponse
+                    {
+                        Message = "Inavlid Phone Number",
+                        Status = response.IsFaulted,
+                    };
+                }
+
                 return new BaseResponse
                 {
                     Message = "successful",
-                    Status = true
+                    Status = response.Result.Status,
                 };
             }
         }
-        
 
-
-        public BaseResponse CreateAnswer(CreateAnswerRequest answers, IList<int> id)
-        {
-            var questions = _questionRepository.GetByListOfId(id);
-            if (questions== null)
-            {
-                return new AnswersResponse
-                {
-                    Message = "questions not available",
-                    Status = false
-                };
-            }
-            foreach (var quest in questions)
-            {
-                var answe = new Answer
-                {
-                    Description = answers.Description,
-                    QuestionId = quest.Id,
-                    Question = quest,
-                };
-                _answerRepository.Add(answe);
-            };
-            return new BaseResponse
-            {
-                Message = "successful",
-                Status = true
-            };
-        }
-
-
+       
+    
         public BaseResponse DeleteAnswer(int answerId)
         {
             var answer = _answerRepository.GetByExpression(t => t.Id == answerId && t.IsDeleted == false);
@@ -105,9 +108,9 @@ namespace Fort.Implementation.Service
 
         }
 
-        public AnswersResponse GetAnswersToQuestions(int QuestionId)
+        public AnswersResponse GetAnswersToQuestion(int QuestionId)
         {
-            var answer = _answerRepository.GetByExpressions(t => t.QuestionId == QuestionId);
+            var answer = _answerRepository.GetAnswersToQuestion(QuestionId);
             if (answer == null)
             {
                 return new AnswersResponse
@@ -121,9 +124,53 @@ namespace Fort.Implementation.Service
                 Data = answer.Select(c => new AnswerDto
                 {
                     Description = c.Description,
+                    QuestionDescription =c.Question.Description,
+                    Rating = c.Rating,
+                    DoctorName=c.Doctor.FirstName+" "+c.Doctor.LastName
                 }).ToList(),
 
-                Message = "no answers",
+                Message = "answers",
+                Status = true
+            };
+
+        }
+
+
+        public AnswersResponse GetDoctorAnswers(int DoctorId)
+        {
+            var user=_userRepository.GetUser(DoctorId);
+            
+            if(user == null)
+            {
+                return new AnswersResponse
+                {
+                    Message = "Doctor does not exist",
+                    Status = false
+                };
+            }
+            var doctor = _doctorRepository.GetDoctor(user.Id);
+            var answer = _answerRepository.GetAnswersByDoctorId(doctor.Id);
+            if (answer == null)
+            {
+                return new AnswersResponse
+                {
+                    Message = "no answers",
+                    Status = true
+                };
+            };
+            return new AnswersResponse
+            {
+                Data = answer.Select(c => new AnswerDto
+                {
+                    Description = c.Description,
+                    AnswerId=c.Id,
+                    
+                    Rating=c.Rating,
+                    QuestionDescription=c.Question.Description,
+                    DoctorName = c.Doctor.FirstName + " " + c.Doctor.LastName
+                }).ToList(),
+
+                Message = "answers",
                 Status = false
             };
 

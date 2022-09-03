@@ -1,0 +1,773 @@
+﻿++Solution 'Fort' ‎(1 of 1 project)
+i:{00000000-0000-0000-0000-000000000000}:Fort.sln
+++Fort
+i:{00000000-0000-0000-0000-000000000000}:Fort
+++Connected Services 
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>598
+++Dependencies
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>597
+++Imports
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>227
+++Properties
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\properties\
+++wwwroot
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\wwwroot\
+++Authentication
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\authentication\
+++BackGroundConfiguration
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\backgroundconfiguration\
+++bin
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\
+++Context
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\context\
+++ApplicationContext.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\context\applicationcontext.cs
+++Contract
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\contract\
+++Controllers
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\
+++AdminController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\admincontroller.cs
+++AnswerController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\answercontroller.cs
+++CheckupController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\checkupcontroller.cs
+++DoctorController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\doctorcontroller.cs
+++PatientController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\patientcontroller.cs
+++QuestionController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\questioncontroller.cs
+++RatingController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\ratingcontroller.cs
+++ResponseController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\responsecontroller.cs
+++RoleController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\rolecontroller.cs
+++SymptomController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\symptomcontroller.cs
+++UserController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\usercontroller.cs
+++WeatherForecastController.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\controllers\weatherforecastcontroller.cs
+++Data
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\data\
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\data\
+++Symptom.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\data\symptom.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\symptom.cs
+++symptoms.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\data\symptoms.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\data\symptoms.json
+++DTOs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\
+++Identity
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\identity\
+++Role.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\identity\role.cs
+++User.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\identity\user.cs
+++UserRole.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\identity\userrole.cs
+++Implementation
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\
+++Repository
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\
+++AdminRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\adminrepository.cs
+++AnswerRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\answerrepository.cs
+++BaseRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\baserepository.cs
+++CheckupRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\checkuprepository.cs
+++DoctorRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\doctorrepository.cs
+++PatientCheckupRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\patientcheckuprepository.cs
+++PatientRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\patientrepository.cs
+++QuestionRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\questionrepository.cs
+++RatingRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\ratingrepository.cs
+++RoleRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\rolerepository.cs
+++SymptomCheckupRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\symptomcheckuprepository.cs
+++SymptomRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\symptomrepository.cs
+++UserRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\repository\userrepository.cs
+++Service
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\
+++AdminService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\adminservice.cs
+++AnswerService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\answerservice.cs
+++Authentication.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\authentication.cs
+++CheckupService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\checkupservice.cs
+++DoctorService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\doctorservice.cs
+++PatientService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\patientservice.cs
+++QuestionService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\questionservice.cs
+++RatingService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\ratingservice.cs
+++ResponseService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\responseservice.cs
+++RoleService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\roleservice.cs
+++SmsBackgroundTasks.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\smsbackgroundtasks.cs
+++SymptomService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\symptomservice.cs
+++UserService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\implementation\service\userservice.cs
+++Interfaces
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\
+++Migrations
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\
+++Model
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\
+++Admin.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\admin.cs
+++Answer.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\answer.cs
+++Approval.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\approval.cs
+++CheckUp.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\checkup.cs
+++Doctor.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\doctor.cs
+++Patient.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\patient.cs
+++PatientCheckup.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\patientcheckup.cs
+++Person.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\person.cs
+++Question.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\question.cs
+++Rating.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\rating.cs
+++SymptomCheckup.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\model\symptomcheckup.cs
+++obj
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\
+++appsettings.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\appsettings.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\appsettings.json
+++Program.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\program.cs
+++WeatherForecast.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\weatherforecast.cs
+++No service dependencies discovered
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>599
+++Analyzers
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:analyzers
+++Frameworks
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:frameworks
+++Packages
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:packages
+++Sdk.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\sdk\sdk.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.illink.tasks\sdk\sdk.props
+++Sdk.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\sdk\sdk.targets
+++launchSettings.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\properties\launchsettings.json
+++DoctorCertificate
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\wwwroot\doctorcertificate\
+++JwtAuthentication.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\authentication\jwtauthentication.cs
+++SmsBackgroundConfiguration.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\backgroundconfiguration\smsbackgroundconfiguration.cs
+++Debug
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\
+++Auditable_entity.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\contract\auditable_entity.cs
+++base_Entity.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\contract\base_entity.cs
+++Iauditable_entity.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\contract\iauditable_entity.cs
+++IsoftDelete.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\contract\isoftdelete.cs
+++AdminDto.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\admindto.cs
+++AnswerDto.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\answerdto.cs
+++BaseResponse.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\baseresponse.cs
+++CheckupDto.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\checkupdto.cs
+++DoctorDto .cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\doctordto .cs
+++PatientDto .cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\patientdto .cs
+++QuestionDto.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\questiondto.cs
+++RatingDto.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\ratingdto.cs
+++RoleDto.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\roledto.cs
+++SymptomDto.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\symptomdto.cs
+++UserDto.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\dtos\userdto.cs
+++20220726084630_init.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220726084630_init.cs
+++20220801172933_white.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220801172933_white.cs
+++20220801173227_worth.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220801173227_worth.cs
+++20220805182227_correct.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220805182227_correct.cs
+++20220805182402_boat.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220805182402_boat.cs
+++20220808135106_phone.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220808135106_phone.cs
+++20220811104359_water.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220811104359_water.cs
+++20220815084254_imit.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220815084254_imit.cs
+++20220822135647_win.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220822135647_win.cs
+++20220825173655_rate.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220825173655_rate.cs
+++ApplicationContextModelSnapshot.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\applicationcontextmodelsnapshot.cs
+++Fort.csproj.EntityFrameworkCore.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\fort.csproj.entityframeworkcore.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\fort.csproj.entityframeworkcore.targets
+++Fort.csproj.nuget.dgspec.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\fort.csproj.nuget.dgspec.json
+++Fort.csproj.nuget.g.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\fort.csproj.nuget.g.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\fort.csproj.nuget.g.props
+++Fort.csproj.nuget.g.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\fort.csproj.nuget.g.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\fort.csproj.nuget.g.targets
+++project.assets.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\project.assets.json
+++project.nuget.cache
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\project.nuget.cache
+++staticwebassets.pack.sentinel
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\staticwebassets.pack.sentinel
+++appsettings.Development.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\appsettings.development.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\appsettings.development.json
+++Microsoft.AspNetCore.Analyzers
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.App.Analyzers
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
+++Microsoft.AspNetCore.App.CodeFixes
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.AspNetCore.Razor.SourceGenerator.Tooling.Internal
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.sourcegenerator.tooling.internal.dll
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++Microsoft.EntityFrameworkCore.Analyzers
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\users\staa99\.nuget\packages\microsoft.entityframeworkcore.analyzers\6.0.7\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+++Microsoft.Extensions.Logging.Generators
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+++Microsoft.NET.Sdk.Razor.SourceGenerators
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
+++System.Text.Json.SourceGeneration
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+++Microsoft.AspNetCore.App
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\microsoft.aspnetcore.app
+++Microsoft.NETCore.App
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\microsoft.netcore.app
+++BCrypt.Net-Next (4.0.3)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>620
+++Microsoft.AspNetCore.Authentication (2.2.0)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>619
+++Microsoft.AspNetCore.Authentication.JwtBearer (6.0.6)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>621
+++Microsoft.EntityFrameworkCore (6.0.7)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>617
+++Microsoft.EntityFrameworkCore.Tools (6.0.7)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>622
+++NCrontab.Signed (3.3.2)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>623
+++Pomelo.EntityFrameworkCore.MySql (6.0.1)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>624
+++Swashbuckle.AspNetCore (6.2.3)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:>618
+++Sdk.props (C:\Program Files\dotnet\sdk\6.0.201\Sdks\Microsoft.NET.Sdk\Sdk)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\sdk\sdk.props
+++Sdk.props (C:\Program Files\dotnet\sdk\6.0.201\Sdks\Microsoft.NET.Sdk.Razor\Sdk)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\sdk\sdk.props
+++Sdk.props (C:\Program Files\dotnet\sdk\6.0.201\Sdks\Microsoft.NET.Sdk.Web.ProjectSystem\Sdk)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web.projectsystem\sdk\sdk.props
+++Sdk.props (C:\Program Files\dotnet\sdk\6.0.201\Sdks\Microsoft.NET.Sdk.Publish\Sdk)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.publish\sdk\sdk.props
+++Sdk.targets (C:\Program Files\dotnet\sdk\6.0.201\Sdks\Microsoft.NET.Sdk\Sdk)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\sdk\sdk.targets
+++Sdk.targets (C:\Program Files\dotnet\sdk\6.0.201\Sdks\Microsoft.NET.Sdk.Razor\Sdk)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\sdk\sdk.targets
+++Sdk.targets (C:\Program Files\dotnet\sdk\6.0.201\Sdks\Microsoft.NET.Sdk.Web.ProjectSystem\Sdk)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web.projectsystem\sdk\sdk.targets
+++Sdk.targets (C:\Program Files\dotnet\sdk\6.0.201\Sdks\Microsoft.NET.Sdk.Publish\Sdk)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.publish\sdk\sdk.targets
+++net6.0
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\
+++IAdminRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\iadminrepository.cs
+++IAnswerRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\ianswerrepository.cs
+++IBaseRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\ibaserepository.cs
+++ICheckupRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\icheckuprepository.cs
+++IDoctorRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\idoctorrepository.cs
+++IPatientCheckupRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\ipatientcheckuprepository.cs
+++IPatientRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\ipatientrepository.cs
+++IQuestionRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\iquestionrepository.cs
+++IRatingRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\iratingrepository.cs
+++IRoleRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\irolerepository.cs
+++ISymptomCheckupRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\isymptomcheckuprepository.cs
+++ISymptomRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\isymptomrepository.cs
+++IUserRepository.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\repository\iuserrepository.cs
+++IAdminService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\iadminservice.cs
+++IAnswerService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\ianswerservice.cs
+++IAuthentication.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\iauthentication.cs
+++ICheckupService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\icheckupservice.cs
+++IDoctorService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\idoctorservice.cs
+++IPatientService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\ipatientservice.cs
+++IQuestionService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\iquestionservice.cs
+++IRatingService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\iratingservice.cs
+++IResponseService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\iresponseservice.cs
+++IRoleService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\iroleservice.cs
+++IUserService.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\iuserservice.cs
+++QuestionResponseModels.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\interfaces\service\questionresponsemodels.cs
+++20220726084630_init.Designer.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220726084630_init.designer.cs
+++20220801172933_white.Designer.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220801172933_white.designer.cs
+++20220801173227_worth.Designer.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220801173227_worth.designer.cs
+++20220805182227_correct.Designer.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220805182227_correct.designer.cs
+++20220805182402_boat.Designer.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220805182402_boat.designer.cs
+++20220808135106_phone.Designer.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220808135106_phone.designer.cs
+++20220811104359_water.Designer.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220811104359_water.designer.cs
+++20220815084254_imit.Designer.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220815084254_imit.designer.cs
+++20220822135647_win.Designer.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220822135647_win.designer.cs
+++20220825173655_rate.Designer.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\migrations\20220825173655_rate.designer.cs
+++Microsoft.Common.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\microsoft.common.props
+++Microsoft.NET.Sdk.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.props
+++Sdk.Razor.CurrentVersion.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\targets\sdk.razor.currentversion.props
+++Microsoft.NET.Sdk.Web.ProjectSystem.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web.projectsystem\targets\microsoft.net.sdk.web.projectsystem.props
+++Microsoft.NET.Sdk.Publish.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.publish\targets\microsoft.net.sdk.publish.props
+++Microsoft.NET.Sdk.BeforeCommon.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.beforecommon.targets
+++Microsoft.CSharp.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\amd64\microsoft.csharp.targets
+++Microsoft.NET.Sdk.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.targets
+++Microsoft.NET.Compatibility.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.compatibility.targets
+++NuGet.Build.Tasks.Pack.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\nuget.build.tasks.pack\build\nuget.build.tasks.pack.targets
+++Sdk.Razor.CurrentVersion.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\targets\sdk.razor.currentversion.targets
+++Microsoft.NET.Sdk.Web.ProjectSystem.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web.projectsystem\targets\microsoft.net.sdk.web.projectsystem.targets
+++Microsoft.NET.Sdk.Publish.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.publish\targets\microsoft.net.sdk.publish.targets
+++runtimes
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\runtimes\
+++BCrypt.Net-Next.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\bcrypt.net-next.dll
+++Fort.deps.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\fort.deps.json
+++Fort.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\fort.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\ref\fort.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\refint\fort.dll
+++Fort.exe
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\fort.exe
+++Fort.pdb
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\fort.pdb
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.pdb
+++Fort.runtimeconfig.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\fort.runtimeconfig.json
+++Fort.staticwebassets.runtime.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\fort.staticwebassets.runtime.json
+++Humanizer.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\humanizer.dll
+++Microsoft.AspNetCore.Authentication.JwtBearer.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.aspnetcore.authentication.jwtbearer.dll
+++Microsoft.EntityFrameworkCore.Abstractions.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.entityframeworkcore.abstractions.dll
+++Microsoft.EntityFrameworkCore.Design.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.entityframeworkcore.design.dll
+++Microsoft.EntityFrameworkCore.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.entityframeworkcore.dll
+++Microsoft.EntityFrameworkCore.Relational.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.entityframeworkcore.relational.dll
+++Microsoft.Extensions.Caching.Memory.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.extensions.caching.memory.dll
+++Microsoft.IdentityModel.JsonWebTokens.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.identitymodel.jsonwebtokens.dll
+++Microsoft.IdentityModel.Logging.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.identitymodel.logging.dll
+++Microsoft.IdentityModel.Protocols.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.identitymodel.protocols.dll
+++Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.identitymodel.protocols.openidconnect.dll
+++Microsoft.IdentityModel.Tokens.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.identitymodel.tokens.dll
+++Microsoft.OpenApi.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\microsoft.openapi.dll
+++MySqlConnector.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\mysqlconnector.dll
+++NCrontab.Signed.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\ncrontab.signed.dll
+++Pomelo.EntityFrameworkCore.MySql.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\pomelo.entityframeworkcore.mysql.dll
+++Swashbuckle.AspNetCore.Swagger.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\swashbuckle.aspnetcore.swagger.dll
+++Swashbuckle.AspNetCore.SwaggerGen.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\swashbuckle.aspnetcore.swaggergen.dll
+++Swashbuckle.AspNetCore.SwaggerUI.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\swashbuckle.aspnetcore.swaggerui.dll
+++System.IdentityModel.Tokens.Jwt.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\system.identitymodel.tokens.jwt.dll
+++System.Security.Permissions.dll
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\system.security.permissions.dll
+++ref
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\ref\
+++refint
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\refint\
+++staticwebassets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\staticwebassets\
+++.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\.netcoreapp,version=v6.0.assemblyattributes.cs
+++apphost.exe
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\apphost.exe
+++Fort.AssemblyInfo.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.assemblyinfo.cs
+++Fort.AssemblyInfoInputs.cache
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.assemblyinfoinputs.cache
+++Fort.assets.cache
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.assets.cache
+++Fort.csproj.AssemblyReference.cache
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.csproj.assemblyreference.cache
+++Fort.csproj.BuildWithSkipAnalyzers
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.csproj.buildwithskipanalyzers
+++Fort.csproj.CopyComplete
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.csproj.copycomplete
+++Fort.csproj.CoreCompileInputs.cache
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.csproj.corecompileinputs.cache
+++Fort.csproj.FileListAbsolute.txt
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.csproj.filelistabsolute.txt
+++Fort.GeneratedMSBuildEditorConfig.editorconfig
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.generatedmsbuildeditorconfig.editorconfig
+++Fort.genruntimeconfig.cache
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.genruntimeconfig.cache
+++Fort.GlobalUsings.g.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.globalusings.g.cs
+++Fort.MvcApplicationPartsAssemblyInfo.cache
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.mvcapplicationpartsassemblyinfo.cache
+++Fort.MvcApplicationPartsAssemblyInfo.cs
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\fort.mvcapplicationpartsassemblyinfo.cs
+++staticwebassets.build.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\staticwebassets.build.json
+++staticwebassets.development.json
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\obj\debug\net6.0\staticwebassets.development.json
+++Microsoft.NuGet.ImportBefore.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\imports\microsoft.common.props\importbefore\microsoft.nuget.importbefore.props
+++NuGet.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\common7\ide\commonextensions\microsoft\nuget\nuget.props
+++Microsoft.NET.Sdk.DefaultItems.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.defaultitems.props
+++Microsoft.NET.Sdk.ImportWorkloads.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.importworkloads.props
+++Microsoft.NET.SupportedTargetFrameworks.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.supportedtargetframeworks.props
+++Microsoft.NET.SupportedPlatforms.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.supportedplatforms.props
+++Microsoft.NET.WindowsSdkSupportedTargetPlatforms.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.windowssdksupportedtargetplatforms.props
+++Microsoft.NET.Sdk.CSharp.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.csharp.props
+++Microsoft.NET.ILLink.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.illink.props
+++Microsoft.NET.Compatibility.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.compatibility.props
+++Microsoft.NET.PackTool.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.packtool.props
+++Microsoft.NET.PackProjectTool.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.packprojecttool.props
+++Microsoft.NET.Sdk.WindowsDesktop.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.windowsdesktop\targets\microsoft.net.sdk.windowsdesktop.props
+++Microsoft.NET.Windows.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.windows.props
+++Sdk.Razor.StaticAssets.ProjectSystem.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\sdk\sdk.razor.staticassets.projectsystem.props
+++Microsoft.TypeScript.Default.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\visualstudio\v17.0\typescript\microsoft.typescript.default.props
+++Microsoft.NET.Sdk.Web.DefaultItems.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web.projectsystem\targets\microsoft.net.sdk.web.defaultitems.props
+++Microsoft.NET.DefaultAssemblyInfo.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.defaultassemblyinfo.targets
+++Microsoft.NET.DefaultOutputPaths.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.defaultoutputpaths.targets
+++Microsoft.NET.Sdk.ImportPublishProfile.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.importpublishprofile.targets
+++Microsoft.NET.TargetFrameworkInference.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.targetframeworkinference.targets
+++Microsoft.NET.Sdk.Razor.BeforeCommon.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\targets\microsoft.net.sdk.razor.beforecommon.targets
+++Microsoft.NET.Sdk.ImportWorkloads.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.importworkloads.targets
+++Microsoft.NET.RuntimeIdentifierInference.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.runtimeidentifierinference.targets
+++Microsoft.NET.EolTargetFrameworks.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.eoltargetframeworks.targets
+++Microsoft.NET.NuGetOfflineCache.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.nugetofflinecache.targets
+++Microsoft.Managed.Before.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\amd64\microsoft.managed.before.targets
+++Microsoft.CSharp.CurrentVersion.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\amd64\microsoft.csharp.currentversion.targets
+++Microsoft.Managed.After.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\amd64\microsoft.managed.after.targets
+++Microsoft.NET.Sdk.Common.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.common.targets
+++Microsoft.PackageDependencyResolution.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.packagedependencyresolution.targets
+++Microsoft.NET.Sdk.DefaultItems.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.defaultitems.targets
+++Microsoft.NET.Sdk.FrameworkReferenceResolution.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.frameworkreferenceresolution.targets
+++Microsoft.NET.Sdk.Shared.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.shared.targets
+++Microsoft.NET.DisableStandardFrameworkResolution.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.disablestandardframeworkresolution.targets
+++Microsoft.NET.DesignerSupport.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.designersupport.targets
+++Microsoft.NET.GenerateAssemblyInfo.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.generateassemblyinfo.targets
+++Microsoft.NET.GenerateGlobalUsings.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.generateglobalusings.targets
+++Microsoft.NET.GenerateSupportedRuntime.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.generatesupportedruntime.targets
+++Microsoft.NET.ComposeStore.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.composestore.targets
+++Microsoft.NET.CrossGen.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.crossgen.targets
+++Microsoft.NET.ObsoleteReferences.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.obsoletereferences.targets
+++Microsoft.NET.Publish.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.publish.targets
+++Microsoft.NET.PackTool.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.packtool.targets
+++Microsoft.NET.PackProjectTool.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.packprojecttool.targets
+++Microsoft.NET.PreserveCompilationContext.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.preservecompilationcontext.targets
+++Microsoft.NET.ConflictResolution.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.conflictresolution.targets
+++Microsoft.NET.Sdk.CSharp.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.csharp.targets
+++Microsoft.NET.ILLink.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.illink.targets
+++Microsoft.NET.Sdk.Analyzers.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.analyzers.targets
+++Microsoft.NET.Compatibility.Common.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.compatibility.common.targets
+++Microsoft.NET.Sdk.Razor.Configuration.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\targets\microsoft.net.sdk.razor.configuration.targets
+++Microsoft.NET.Sdk.Razor.CodeGeneration.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\targets\microsoft.net.sdk.razor.codegeneration.targets
+++Microsoft.NET.Sdk.Razor.SourceGenerators.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\targets\microsoft.net.sdk.razor.sourcegenerators.targets
+++Microsoft.NET.Sdk.Razor.StaticWebAssets.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\targets\microsoft.net.sdk.razor.staticwebassets.targets
+++Microsoft.NET.Sdk.Razor.ScopedCss.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\targets\microsoft.net.sdk.razor.scopedcss.targets
+++Microsoft.NET.Sdk.Razor.JSModules.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\targets\microsoft.net.sdk.razor.jsmodules.targets
+++Microsoft.NET.Sdk.Razor.GenerateAssemblyInfo.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\targets\microsoft.net.sdk.razor.generateassemblyinfo.targets
+++Microsoft.NET.Sdk.Razor.MvcApplicationPartsDiscovery.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\targets\microsoft.net.sdk.razor.mvcapplicationpartsdiscovery.targets
+++Microsoft.NET.Sdk.Razor.DesignTime.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\visualstudio\razor\microsoft.net.sdk.razor.designtime.targets
+++Microsoft.TypeScript.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\visualstudio\v17.0\typescript\microsoft.typescript.targets
+++Microsoft.TypeScript.DotNetCore.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\visualstudio\v17.0\typescript\microsoft.typescript.dotnetcore.targets
+++Microsoft.Web.Designtime.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\visualstudio\managed.web\microsoft.web.designtime.targets
+++Default.pubxml
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.publish\targets\publishprofiles\default.pubxml
+++Microsoft.NET.Sdk.Publish.ComputeFiles.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.publish\targets\computetargets\microsoft.net.sdk.publish.computefiles.targets
+++Microsoft.NET.Sdk.Publish.FilterFiles.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.publish\targets\copytargets\microsoft.net.sdk.publish.filterfiles.targets
+++Microsoft.NET.Sdk.Publish.CopyFiles.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.publish\targets\copytargets\microsoft.net.sdk.publish.copyfiles.targets
+++Microsoft.NET.Sdk.Publish.TransformFiles.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.publish\targets\transformtargets\microsoft.net.sdk.publish.transformfiles.targets
+++Microsoft.NET.Sdk.Publish.FileSystem.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.publish\targets\publishtargets\microsoft.net.sdk.publish.filesystem.targets
+++Microsoft.NET.Sdk.DotNetCLITool.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.publish\targets\dotnetclitooltargets\microsoft.net.sdk.dotnetclitool.targets
+++unix
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\runtimes\unix\
+++win
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\runtimes\win\
+++Microsoft.Extensions.ApiDescription.Server.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\users\staa99\.nuget\packages\microsoft.extensions.apidescription.server\3.0.0\build\microsoft.extensions.apidescription.server.props
+++Swashbuckle.AspNetCore.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\users\staa99\.nuget\packages\swashbuckle.aspnetcore\6.2.3\build\swashbuckle.aspnetcore.props
+++Microsoft.EntityFrameworkCore.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\users\staa99\.nuget\packages\microsoft.entityframeworkcore\6.0.7\buildtransitive\net6.0\microsoft.entityframeworkcore.props
+++Microsoft.EntityFrameworkCore.Design.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\users\staa99\.nuget\packages\microsoft.entityframeworkcore.design\6.0.7\build\net6.0\microsoft.entityframeworkcore.design.props
+++Microsoft.NuGet.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\nuget\17.0\microsoft.nuget.props
+++Microsoft.NETCoreSdk.BundledVersions.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\microsoft.netcoresdk.bundledversions.props
+++Microsoft.NET.Sdk.WindowsDesktop.WindowsForms.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.windowsdesktop\targets\microsoft.net.sdk.windowsdesktop.windowsforms.props
+++Microsoft.NET.Sdk.WindowsDesktop.WPF.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.windowsdesktop\targets\microsoft.net.sdk.windowsdesktop.wpf.props
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.android)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.android\workloadmanifest.targets
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.ios)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.ios\workloadmanifest.targets
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.maccatalyst)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.maccatalyst\workloadmanifest.targets
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.macos)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.macos\workloadmanifest.targets
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.maui)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.maui\workloadmanifest.targets
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.tvos)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk-manifests\6.0.200\microsoft.net.sdk.tvos\workloadmanifest.targets
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.200\microsoft.net.workload.emscripten)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk-manifests\6.0.200\microsoft.net.workload.emscripten\workloadmanifest.targets
+++WorkloadManifest.targets (C:\Program Files\dotnet\sdk-manifests\6.0.200\microsoft.net.workload.mono.toolchain)
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk-manifests\6.0.200\microsoft.net.workload.mono.toolchain\workloadmanifest.targets
+++Microsoft.CSharp.Core.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\roslyn\microsoft.csharp.core.targets
+++Microsoft.CSharp.DesignTime.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\visualstudio\managed\microsoft.csharp.designtime.targets
+++Microsoft.Common.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\amd64\microsoft.common.targets
+++Microsoft.ServiceModel.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\amd64\microsoft.servicemodel.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\windows\microsoft.net\framework\v4.0.30319\microsoft.servicemodel.targets
+++Microsoft.NET.Sdk.DefaultItems.Shared.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.sdk.defaultitems.shared.targets
+++Microsoft.NETCoreSdk.BundledCliTools.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\microsoft.netcoresdk.bundledclitools.props
+++Microsoft.NET.DefaultPackageConflictOverrides.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\targets\microsoft.net.defaultpackageconflictoverrides.targets
+++Microsoft.CodeAnalysis.NetAnalyzers.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\build\microsoft.codeanalysis.netanalyzers.props
+++Microsoft.CodeAnalysis.NetAnalyzers.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\build\microsoft.codeanalysis.netanalyzers.targets
+++lib
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\runtimes\unix\lib\
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\runtimes\win\lib\
+++Microsoft.NET.ILLink.Tasks.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.illink.tasks\build\microsoft.net.illink.tasks.props
+++System.Windows.Forms.Analyzers.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.windowsdesktop\targets\system.windows.forms.analyzers.props
+++Microsoft.Managed.Core.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\roslyn\microsoft.managed.core.targets
+++Microsoft.Managed.DesignTime.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\visualstudio\managed\microsoft.managed.designtime.targets
+++Microsoft.Common.CurrentVersion.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\amd64\microsoft.common.currentversion.targets
+++netcoreapp3.0
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\runtimes\unix\lib\netcoreapp3.0\
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\runtimes\win\lib\netcoreapp3.0\
+++netstandard2.0
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\bin\debug\net6.0\runtimes\win\lib\netstandard2.0\
+++Microsoft.Managed.Core.CurrentVersions.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\roslyn\microsoft.managed.core.currentversions.targets
+++Fort.csproj.user
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:d:\staa99\desktop\my project\fort\fort\fort.csproj.user
+++Microsoft.NET.props
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\amd64\microsoft.net.props
+++Microsoft.CodeAnalysis.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\visualstudio\v17.0\codeanalysis\microsoft.codeanalysis.targets
+++Microsoft.Xaml.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\amd64\microsoft.xaml.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\windows\microsoft.net\framework\v4.0.30319\microsoft.xaml.targets
+++Microsoft.WorkflowBuildExtensions.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\bin\amd64\microsoft.workflowbuildextensions.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\windows\microsoft.net\framework\v4.0.30319\microsoft.workflowbuildextensions.targets
+++Microsoft.TeamTest.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\visualstudio\v17.0\teamtest\microsoft.teamtest.targets
+++NuGet.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\common7\ide\commonextensions\microsoft\nuget\nuget.targets
+++Microsoft.Docker.ImportAfter.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\microsoft.common.targets\importafter\microsoft.docker.importafter.targets
+++Microsoft.NET.Build.Extensions.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\microsoft.common.targets\importafter\microsoft.net.build.extensions.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\microsoft.net.build.extensions\microsoft.net.build.extensions.targets
+++Microsoft.NuGet.ImportAfter.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\microsoft.common.targets\importafter\microsoft.nuget.importafter.targets
+++Microsoft.Web.ImportAfter.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\current\microsoft.common.targets\importafter\microsoft.web.importafter.targets
+++Microsoft.Extensions.ApiDescription.Server.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\users\staa99\.nuget\packages\microsoft.extensions.apidescription.server\3.0.0\build\microsoft.extensions.apidescription.server.targets
+++Microsoft.Docker.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\sdks\microsoft.docker.sdk\build\microsoft.docker.targets
+++Microsoft.Web.IISSupport.targets
+i:{1a23aee4-4b72-46f7-afab-edf347a4d760}:c:\program files\microsoft visual studio\2022\community\msbuild\microsoft\visualstudio\managed.web\microsoft.web.iissupport.targets
+++PatientService.cs~RF4c3f081.TMP
+++f0thv3fr.3xw~

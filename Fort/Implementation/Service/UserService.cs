@@ -16,15 +16,18 @@ namespace Fort.Implementation.Service
     public class UserService: IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
         
         
 
 
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IRoleRepository roleRepository)
         {
             _userRepository = userRepository;
-            
+             _roleRepository= roleRepository;
+
+
         }
 
         public BaseResponse DeleteUser(int userId)
@@ -51,7 +54,7 @@ namespace Fort.Implementation.Service
 
         public UserResponsModel GetUserById(int id)
         {
-           var user=_userRepository.GetByExpression(y=>y.Id == id);
+           var user=_userRepository.GetByExpression(y=>y.Id== id);
             if (user == null)
             {
                 return new UserResponsModel
@@ -64,13 +67,41 @@ namespace Fort.Implementation.Service
             {
                 Data=new UserDto
                 {
+                    Id=user.Id,
                    Email=user.Email,
-                   PassWord=user.PassWord,
-                   Roles=user.ApplicationUserRoles,
-                   UserName=user.UserName
+                   
                 },
                 Message="get successful",
                 Status=true
+
+            };
+        }
+
+        public UserResponsModel GetUserByEmail(string email)
+        {
+            var user = _userRepository.GetByExpression(y=>y.Email==email);
+            if (user == null)
+            {
+                return new UserResponsModel
+                {
+                    Message = "Not found",
+                    Status = false,
+                };
+            }
+
+            return new UserResponsModel
+            {
+                Data = new UserDto
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    PhoneNumber=user.PhoneNumber,
+                    Gender=user.Gender,
+                    Age=user.Age,
+                    
+                },
+                Message = "get successful",
+                Status = true
 
             };
         }
@@ -81,23 +112,40 @@ namespace Fort.Implementation.Service
         public UsersResponseModel GetUsersByRole(string name)
         {
             var users = _userRepository.GetUsersByRole(name);
+            if(users.Count==0)
+            {
+                return new UsersResponseModel
+                {
+
+                    
+                    Message = "get Unsuccessful",
+                    Status = false
+                };
+            }
+          
             return new UsersResponseModel
             {
+                
                 Data = users.Select(r => new UserDto
                 {
-                    Id=r.Id,
-                    UserName=r.UserName,
-                    Roles=r.ApplicationUserRoles,
-                    Email=r.Email,
-                    PassWord=r.PassWord,
-                    
-                   
+
+                    Email = r.User.Email,
+                    Id = r.User.Id,
+                    UserRoles = r.User.UserRoles.Select(t => new UserRoleDto
+                    {
+                        Id = t.User.Id,
+                        Name = t.Role.Name,
+                    }).ToList(),
+
                 }).ToList(),
                 Message = "get successful",
                 Status = true
             };
 
-        }
+
+        } 
+
+        
 
 
         public UsersResponseModel GetUsers()
@@ -107,13 +155,19 @@ namespace Fort.Implementation.Service
             {
                 Data = users.Select(r => new UserDto
                 {
-                    Id = r.Id,
-                    UserName = r.UserName,
-                    Roles = r.ApplicationUserRoles,
+                   
                     Email = r.Email,
-                    PassWord = r.PassWord,
-
-
+                    Age=r.Age,
+                    Gender=r.Gender,
+                    Id=r.Id,
+                    UserRoles = r.UserRoles.Select(t => new UserRoleDto
+                    {
+                     Id=t.Id,   
+                     Name=t.Role.Name,
+                    }).ToList(),
+                    
+                  
+                   
                 }).ToList(),
                 Message = "get successful",
                 Status = true
@@ -125,23 +179,83 @@ namespace Fort.Implementation.Service
 
         public LoginResponseModel LogIn(LoginUserRequest userrequest)
         {
-           var user=_userRepository.GetByExpression(x=>x.Email==userrequest.EmailAddress && x.PassWord==userrequest.PassWord);
+
+            var user = _userRepository.GetUser(userrequest.EmailAddress);
+           
+
+
             if (user == null)
             {
                 return new LoginResponseModel
                 {
-                    Message = "invalid email or password",
-                    Status = false
+                    Message = "invalid credentials",
+                    Status = false,
+             
                 };
             }
             else
             {
+                var verify = BCrypt.Net.BCrypt.Verify(userrequest.PassWord, user.PassWord);
+                if (user != null && verify ==false)
+                {
+                    return new LoginResponseModel
+                    {
+                        Message = "invalid credentials",
+                        Status = false,
+
+                    };
+                }
+
                 return new LoginResponseModel
                 {
-
+                    Message = "Login Suvccessful",
+                    Status = true,
+                    Data = new UserDto
+                    {
+                        Id = user.Id,
+                        Email = user.Email,
+                        UserRoles = user.UserRoles.Select(x => new UserRoleDto
+                        {
+                              Id = x.Id,
+                              Name = x.Role.Name
+                        }).ToList()
+                    },
                 };
                
             }
+        }
+
+        public BaseResponse UpdateUserRole(UpdateUserRoleRequest request, int id)
+        {
+            var user = _userRepository.GetUser(request.Email);
+            var role = _roleRepository.GetRole(request.RoleName);
+            if(user == null)
+            {
+                return new BaseResponse
+                {
+                    Message = "User not found",
+                    Status = false,
+                };
+            }
+            var userrole = new UserRole
+            {
+                CreatedBy = id,
+                IsDeleted = false,
+                Role = role,
+                RoleId = role.Id,
+                User=user,
+                UserId = user.Id,
+                LastModifiedOn = DateTime.Now,
+            };
+            user.UserRoles.Add(userrole);
+           
+            _userRepository.Update(user);
+            return new BaseResponse
+            {
+                Message = "Updated succesfully",
+                Status = true,
+            };
+
         }
     }
 }

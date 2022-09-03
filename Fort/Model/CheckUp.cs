@@ -8,8 +8,7 @@ namespace Fort.Model
     {
         public string Name { get; set; }
         public string Description { get; set; }
-       
-        public ICollection<SymptomCheckup> SymptomCheckups { get; set; }   = new HashSet<SymptomCheckup>();   
+        public ICollection<SymptomCheckup> SymptomCheckups { get; set; }   = new HashSet<SymptomCheckup>();  
         public ICollection<PatientCheckup> PatientCheckups { get; set; } = new HashSet<PatientCheckup>();
     }
 }

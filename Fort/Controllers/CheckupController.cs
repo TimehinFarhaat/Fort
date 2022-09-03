@@ -20,10 +20,9 @@ namespace Fort.Controllers
         }
 
         [HttpPost("CreateDiagnosis")]
-        public IActionResult CreateDiagnosis(CreateCheckupRequest requestmodel, int id)
+        public IActionResult CreateDiagnosis([FromBody]CreateCheckupRequest requestmodel, int id)
         {
             var result = _checkupService.CreateCheckup(requestmodel, id);
-            if (result.Status == false) return BadRequest(requestmodel);
             return Ok(result);
         }
 
@@ -45,8 +44,8 @@ namespace Fort.Controllers
         }
 
 
-        [HttpGet("GetPreviousDiagnose/{Id}")]
-        public IActionResult GetPreviousDiagnose([FromRoute] int Id)
+        [HttpGet("GetPreviousDiagnose")]
+        public IActionResult GetPreviousDiagnose(int Id)
         {
             var result = _checkupService.GetPreviouscheckup(Id);
             return Ok(result);

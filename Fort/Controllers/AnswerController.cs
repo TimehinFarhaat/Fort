@@ -17,10 +17,10 @@ namespace Fort.Controllers
         }
 
         [HttpPost("AnswerQuestion")]
-        public IActionResult AnswerQuestion(CreateAnswerRequest request, int questionId)
+        public IActionResult AnswerQuestion(CreateAnswerRequest request, int questionId,int doctorId)
         {
-            var result = _answerService.CreateAnswer(request, questionId);
-            return Ok(result);
+            var result = _answerService.CreateAnswer(request, questionId,doctorId);
+            return Ok(result.Message);
         }
 
 
@@ -32,11 +32,23 @@ namespace Fort.Controllers
         }
 
 
-        [HttpPost("AnswerQuestions")]
-        public IActionResult AnswerQuestions([FromBody] CreateAnswerRequest request, [FromQuery]List<int> questionsId)
+
+        [HttpGet("GetAnswersByDoctorId")]
+        public IActionResult GetAnswer(int doctorId)
         {
-            var result = _answerService.CreateAnswer(request, questionsId);
+             var result = _answerService.GetDoctorAnswers(doctorId);
             return Ok(result);
         }
+
+
+        [HttpGet("GetAnswersToQuestion")]
+        public IActionResult GetAnswersToQuestion(int questionId)
+        {
+            var result = _answerService.GetAnswersToQuestion(questionId);
+            return Ok(result);
+        }
+
+
+
     }
 }

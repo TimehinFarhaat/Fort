@@ -16,17 +16,20 @@ namespace Fort.Controllers
             _adminService = adminService;
         }
 
+
         [HttpPost("RegisterAdmin")]
-        public IActionResult RegisterAdmin(CreateAdminRequest adminRequestmodel, int id)
+        public IActionResult RegisterAdmin([FromForm] CreateAdminRequest adminRequestmodel)
         {
-            var result = _adminService.AddAdmin(adminRequestmodel, id);
+            var result = _adminService.AddAdmin(adminRequestmodel);
             return Ok(result);
         }
          
+
+
         [HttpDelete("DeleteAdmin")]
-        public IActionResult DeleteAdmin(string email)
+        public IActionResult DeleteAdmin(int id)
         {
-            var result = _adminService.DeleteAdmin(email);
+            var result = _adminService.DeleteAdmin(id);
             return Ok(result);
         }
 
@@ -38,6 +41,22 @@ namespace Fort.Controllers
             return Ok(result);
         }
 
+        [HttpGet("GetAllAdmins")]
+        public IActionResult GetAllAdmin()
+        {
+            var result = _adminService.GetAdmins();
+            return Ok(result);
+        }
+
+
+        [HttpPatch("UpdateAdmin")]
+        public IActionResult UpdateDoctor(UpdateAdminRequest adminRequestmodel, int id)
+        {
+            var result = _adminService.UpdateAdmin(adminRequestmodel, id);
+            return Ok(result);
+        }
+
+
 
         [HttpGet("GetAdminDetailsByEmail")]
         public IActionResult GetAdminDetails(string email)
@@ -47,19 +66,7 @@ namespace Fort.Controllers
         }
 
 
-        [HttpGet("GetApproveDoctor")]
-        public IActionResult GetApproveDoctor(string email)
-        {
-            var result = _adminService.ApproveDoctor(email);
-            return Ok(result);
-        }
-
-        [HttpGet("GetDisApproveDoctor")]
-        public IActionResult GetDisApproveDoctor(string email)
-        {
-            var result = _adminService.DisapproveDoctor(email);
-            return Ok(result);
-        }
+  
 
 
 

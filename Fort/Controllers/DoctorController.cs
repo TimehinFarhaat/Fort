@@ -73,8 +73,15 @@ namespace Fort.Controllers
             return Ok(result);
         }
 
+        [HttpGet("GetAllDoctors")]
+        public IActionResult GetAllDoctors()
+        {
+            var result = _doctorService.GetDoctors();
+            return Ok(result);
+        }
 
-       [HttpDelete("DeleteDoctor")]
+
+        [HttpDelete("DeleteDoctor")]
         public IActionResult DeleteDoctor(int id)
         {
             var result = _doctorService.DeleteDoctor(id);
@@ -88,5 +95,26 @@ namespace Fort.Controllers
             var result = _doctorService.UpdateDoctor(doctorRequestmodel, id);
             return Ok(result);
         }
+
+
+
+
+        [HttpPatch("ApproveDoctor")]
+        public IActionResult APProveDoctor(  int id)
+        {
+            var result = _doctorService.ApproveDoctor(id);
+            return Ok(result);
+        }
+
+
+
+        [HttpPatch("DisapproveDoctor")]
+        public IActionResult DisapproveDoctor(UpdateDoctorRequest doctorRequestmodel, int id)
+        {
+            var result = _doctorService.ApproveDoctor(id);
+            return Ok(result);
+        }
+
+
     }
 }

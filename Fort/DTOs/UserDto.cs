@@ -6,13 +6,25 @@ namespace Fort.DTOs
     {
         public int Id { get; set; }
         public string UserName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
+        public DateTime DateofBirth { get; set; }
+        public DateTime DateCreated { get; set; }
+        public string Gender { get; set; }
+        public List<UserRoleDto> UserRoles { get; set; }
+        public int Age { get; set; }
         public string Email { get; set; }
-        public string PassWord { get; set; }
-        public ICollection<User_role> Roles { get; set; } = new HashSet<User_role>();
+
     }
+      
      
     
-
+    public class UserRoleDto
+    {
+        public int Id { get;set; }
+        public string Name { get; set; }
+    }
 
     public class CreateUserRequest
     {
@@ -21,6 +33,13 @@ namespace Fort.DTOs
         public string EmailAddress { get; set; }
         public string UserName { get; set; }
         public string PassWord { get; set; }
+    }
+    public class UpdateUserRoleRequest
+    {
+
+        public string RoleName { get; set; }
+        public string Email { get; set; }
+       
     }
 
 

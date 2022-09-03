@@ -1,6 +1,7 @@
 ﻿using Fort.Context;
 using Fort.Interfaces.Repository;
 using Fort.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fort.Implementation.Repository
 {
@@ -12,6 +13,12 @@ namespace Fort.Implementation.Repository
             _context = context;
         }
 
-       
+        public Symptom GetSymptom(string name)
+        {
+            var rol = _context.Symptoms.Include(x => x.SymptomCheckups)
+                               .SingleOrDefault(u => u.Name == name);
+            return rol;
+        }
+
     }
 }

@@ -5,7 +5,7 @@ namespace Fort.Interfaces.Service
 {
     public interface IRoleService
     {
-        BaseResponse AddRole(CreateRoleRequest role,int AdminId);
+        BaseResponse AddRole(CreateRoleRequest role);
         BaseResponse UpdateRole(UpdateRoleRequest role,int id);
         RoleResponsModel GetRole(int id);
         public BaseResponse DeleteRole(int roleId);

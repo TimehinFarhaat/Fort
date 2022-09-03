@@ -18,15 +18,17 @@ namespace Fort.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+      //  [Authorize(Roles = "Admin")]
         [HttpPost("AddRole")]
-        public IActionResult AddRole(CreateRoleRequest roleRequestmodel,int id)
+        public IActionResult AddRole(CreateRoleRequest roleRequestmodel)
         {
-            var result = _roleService.AddRole(roleRequestmodel,id);
+            var result = _roleService.AddRole(roleRequestmodel);
             return Ok(result);
         }
 
-        [Authorize(Roles="Admin")]
+
+
+       // [Authorize(Roles="Admin")]
         [HttpDelete("DeleteRole")]
         public IActionResult DeleteRole(int id)
         {
@@ -35,7 +37,7 @@ namespace Fort.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         [HttpPatch("UpdateRole")]
         public IActionResult UpdateRole(UpdateRoleRequest updateRole,int id)
         {
@@ -43,7 +45,7 @@ namespace Fort.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         [HttpGet("GetRoleDetailsById")]
         public IActionResult GetRoleDetailsById(int id)
         {
@@ -59,7 +61,7 @@ namespace Fort.Controllers
             return Ok(result.Message);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet("GetRoles")]
         public IActionResult GetRoles()
         {

@@ -10,137 +10,96 @@ namespace Fort.Implementation.Service
     public class AdminService : IAdminService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IRoleRepository _roleRepository;
+        private readonly IPatientRepository _patientRepository;
         private readonly IAdminRepository _adminRepository;
-        private readonly IDoctorRepository _doctorRepository;
+        private readonly IRoleRepository _roleRepository;
 
-        public AdminService(IUserRepository userRepository, IRoleRepository roleRepository, IAdminRepository adminRepository, IDoctorRepository doctorRepository)
+
+        public AdminService(IUserRepository userRepository,  IAdminRepository adminRepository, IRoleRepository roleRepository,IPatientRepository patientRepository)
         {
             _userRepository = userRepository;
-            _roleRepository = roleRepository;
             _adminRepository = adminRepository;
-            _doctorRepository = doctorRepository;
+            _patientRepository= patientRepository;
+            _roleRepository = roleRepository;   
+            
         }
 
-        public BaseResponse AddAdmin(CreateAdminRequest Adminrequest,int AdminId)
+        public BaseResponse AddAdmin(CreateAdminRequest Adminrequest)
         {
-            var check =_userRepository.GetByExpressions(r => r.Email == Adminrequest.EmailAddress);
-            if (check == null)
-            {
-                var user = new User
-                {
-                    UserName = Adminrequest.FirstName,
-                    Email = Adminrequest.EmailAddress,
-                    PassWord = Adminrequest.PassWord,
-                    CreatedBy = AdminId,
-                };
-                _userRepository.Add(user);
-                var roles = _roleRepository.GetByExpression(r => r.Name == "Admin");
+          
+            var q = _userRepository.GetByExpression(s => s.Email == Adminrequest.EmailAddress);
 
-                var userRole = new User_role
-                {
-                    ApplicationUserId = user.Id,
-                    User = user,
-                    ApplicationRoleId = roles.Id,
-                    Role = roles,
-                    CreatedBy = AdminId
-                };
-
-                user.ApplicationUserRoles.Add(userRole);
-
-
-                _userRepository.Add(user);
-                var admin = new Admin
-                {
-                    FirstName = Adminrequest.FirstName,
-                    LastName = Adminrequest.LastName,
-                    Email = Adminrequest.EmailAddress,
-                    CreatedBy = AdminId,
-                    UserId = user.Id
-                };
-
-                _adminRepository.Add(admin);
-                return new BaseResponse
-                {
-                    Message = "Successfully added",
-                    Status = true
-                };
-            }
-            else
+            if (q == null)
             {
                 return new BaseResponse
                 {
-                    Message = "User already exsist",
+                    Message = "Admin already exist",
                     Status = false
                 };
-
             }
-
-        }
-
-
-
-
-        public BaseResponse ApproveDoctor(string email)
-        {
-            var doctor = _doctorRepository.GetByExpression(c => c.EmailAddress == email);
-            if (doctor == null) return new BaseResponse
-            {
-                Message = "Doctor does not  exsist",
-                Status = false
-            };
-            else
-            {
-                doctor.ValidateDoctor = Approval.Approve;
-                _doctorRepository.Update(doctor);
-                return new BaseResponse
+            
+            
+                var user = new User
                 {
-                    Message = "Doctor approved",
-                    Status = true
+                    Email = Adminrequest.EmailAddress,
+                    PassWord = BCrypt.Net.BCrypt.HashPassword(Adminrequest.PassWord),
+                    PhoneNumber = Adminrequest.Phonenumber,
+                    Age = Adminrequest.Age,
+                    Gender = Adminrequest.Gender,
+
                 };
-            }
-        }
-
-
-
-
-
-
-        public BaseResponse DisapproveDoctor(string email)
-        {
-            var doctor = _doctorRepository.GetByExpression(c => c.EmailAddress == email);
-            if (doctor == null) return new BaseResponse
-            {
-                Message = "Doctor does not  exsist",
-                Status = false
-            };
-            else
-            {
-                doctor.ValidateDoctor = Approval.Decline;
-                _doctorRepository.Update(doctor);
-                return new BaseResponse
+                List<string> s = new List<string> {"Admin" }; 
+                var roles = _roleRepository.GetSelectedUserRole(s);
+                
+                var admin = new Admin
                 {
-                    Message = "Doctor approved",
-                    Status = true
+                    DateOfBirth = DateTime.Now,
+                    FirstName = Adminrequest.FirstName,
+                    LastName = Adminrequest.LastName,
+                    User = user,
+                    CreatedOn = DateTime.Now,
+                    IsDeleted = false,
+                    UserId = user.Id
                 };
-            }
+               
+                foreach (var role in roles)
+                {
+                    var userRole = new UserRole
+                    {
+                        CreatedOn = DateTime.Now,
+                        IsDeleted = false,
+                        
+                        Role= role,
+                        RoleId=role.Id,
+                        User=user,
+                        UserId=user.Id
+                    };
+                    user.UserRoles.Add(userRole);
+                }
+                _userRepository.Add(user);
+                _adminRepository.Add(admin);
+            return new BaseResponse
+            {
+                Message = "Successfully added",
+                Status = true
+            };
+            
+        
+
         }
-
-
-
 
 
 
         public AdminResponsModel GetAdminById(int id)
         {
-            var admin = _adminRepository.GetByExpression(x=>x.Id==id  &&  x.IsDeleted ==false);
+            var admin = _adminRepository.GetAdmin(id);
             if (admin == null)
             {
                 return new AdminResponsModel
                 {
       
-                    Message = "Get Successful",
-                    Status = true
+                    Message = "Get unSuccessful",
+                    Status = false,
 
                 };
             }
@@ -150,9 +109,12 @@ namespace Fort.Implementation.Service
                 Data = new AdminDto
                 {
                     Id = admin.Id,
-                    UserName = admin.FirstName + " " + admin.LastName,
-                    Email = admin.Email,
-                    PassWord = admin.Password,
+                    UserName = admin.FirstName+" "+admin.LastName,
+                    userRoles = admin.User.UserRoles.Select(e => e.Role.Name).ToList(),
+                    Email = admin.User.Email,
+                    Age = admin.User.Age,
+                    Gender = admin.User.Gender,
+                    PhoneNumber = admin.User.PhoneNumber,
                 },
                 Message = "Get Successful",
                 Status = true
@@ -163,29 +125,40 @@ namespace Fort.Implementation.Service
 
         public AdminResponsModel GetAdminByEmail(string email)
         {
-            var admin= _adminRepository.GetByExpression(x=>x.Email==email);
-            if (admin == null)
+            var admin= _adminRepository.GetAdmin(email);
+            
+            if (admin != null)
             {
                 return new AdminResponsModel
                 {
-                    Message = "unSuccessful",
-                    Status = false
+                    Data = new AdminDto
+                    {
+                        Id = admin.Id,
+                        UserName = admin.FirstName + " " + admin.LastName,
+                        Email = admin.User.Email,
+                        Age=admin.User.Age,
+                        Gender = admin.User.Gender,
+                        FirstName=admin.FirstName,
+                        LastName=admin.LastName,
+                        userRoles=admin.User.UserRoles.Select(e=>e.Role.Name).ToList(),
+                        DateofBirth=admin.DateOfBirth,
+                        PhoneNumber = admin.User.PhoneNumber,
+                        DateCreated=admin.CreatedOn
+
+
+                    },
+                    Message = "Get Successful",
+                    Status = true
+
                 };
             }
-            
             return new AdminResponsModel
             {
-                Data = new AdminDto
-                {
-                    Id = admin.Id,
-                    UserName = admin.FirstName + " " + admin.LastName,
-                    Email = admin.Email,
-                    PassWord = admin.Password,
-                },
-                Message = "Get Successful",
-                Status = true
-
+                Message = "unSuccessful",
+                Status = false
             };
+
+
         }
 
 
@@ -206,12 +179,15 @@ namespace Fort.Implementation.Service
             {
                 Data = admins.Select(u => new AdminDto
                 {
-                    Age = u.Age,
-                    Email = u.Email,
+                    Age = u.User.Age,
+                    Gender=u.User.Gender,
+                    Email = u.User.Email,
+                    FirstName=u.FirstName,
+                    LastName=u.LastName,
                     Id = u.Id,
-                    PassWord = u.Password,
                     UserName = u.FirstName + " " + u.LastName,
-                    UserRoles = u.ApplicationUser.ApplicationUserRoles
+                    PhoneNumber = u.User.PhoneNumber,
+
                 }).ToList(),
 
                 Message = "Get Successful",
@@ -223,9 +199,10 @@ namespace Fort.Implementation.Service
 
 
 
-        public BaseResponse UpdateAdmin(UpdateAdminRequest request, int id)
+        public BaseResponse UpdateAdmin(UpdateAdminRequest request, int userId)
         {
-            var user = _userRepository.GetByExpression(x => x.Id == id);
+            var user = _userRepository.GetByExpression(x => x.Id == userId);
+         
                                       
 
             if (user == null)
@@ -236,15 +213,26 @@ namespace Fort.Implementation.Service
                     Message = "Does not exist"
                 };
             }
-
+            var admin = _adminRepository.GetAdmin(user.Id);
             {
-                user.UserName=request.UserName;
+                var roles = _roleRepository.GetUserRole(user.Id);
+                admin.FirstName = request.FirstName;
+                admin.LastName = request.LastName;
+                admin.User.Age = request.Age;
+                user.LastModifiedOn= DateTime.Now;
+                admin.LastModifiedOn= DateTime.Now;
                 user.Email = request.EmailAddress;
+                user.PassWord = BCrypt.Net.BCrypt.HashPassword(request.PassWord);
+                
                 user.LastModifiedBy = user.Id;
-                user.Id = user.Id;
+                admin.User.PhoneNumber = request.Phonenumber;
+               
+               
+                _userRepository.Update(user);
+                _adminRepository.Update(admin);
             };
 
-            _userRepository.Update(user);
+           
             return new BaseResponse
             {
                 Message = "Updated added",
@@ -253,27 +241,29 @@ namespace Fort.Implementation.Service
             
         }
 
-        public BaseResponse DeleteAdmin(string email)
+        public BaseResponse DeleteAdmin(int id)
         {
-            var admin = _adminRepository.GetByExpression(x => x.EmailAddress == email && x.IsDeleted == false);
+            var admin = _adminRepository.GetAdmin(id);
             if (admin == null)
             {
                 return new BaseResponse
                 {
-
-                    Message = "Get Successful",
-                    Status = false
-
+                    Message = "not found",
+                    Status = false,
                 };
             }
-            admin.IsDeleted=true;
+            var user = _userRepository.GetUser(admin.User.Id);
+            admin.IsDeleted = true;
+            user.IsDeleted = true;
+            admin.DeletedOn = DateTime.Now;
+
+            _userRepository.Update(user);
+            
             _adminRepository.Update(admin);
             return new BaseResponse
             {
-
-                Message = "Delete successful",
-                Status = true
-
+                Message = "Deleted successfully",
+                Status = true,
             };
         }
     }

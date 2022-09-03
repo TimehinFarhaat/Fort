@@ -2,7 +2,12 @@
 {
     public class AnswerDto
     {
+        public int AnswerId { get; set; }
+      
+        public string QuestionDescription { get; set; }
+       public int  Rating { get; set; }
         public string Description { get; set; }
+        public string DoctorName { get; set; }
     }
     public class CreateAnswerRequest
     {

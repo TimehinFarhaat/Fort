@@ -20,6 +20,7 @@ namespace Fort.Interfaces.Repository
         public IList<T> GetAll();
         public IList<T> GetByExpressions (Expression<Func<T, bool>> expression);
         public T GetByExpression(Expression<Func<T,bool>> expression);
+       // public T GetByListOfUser(IList<T> users);
         public bool Exist (Expression<Func<T, bool>> expression);
     }
 }

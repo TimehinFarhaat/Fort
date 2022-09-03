@@ -1,5 +1,6 @@
 ﻿using Fort.DTOs;
 using Fort.Interfaces.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,9 +16,9 @@ namespace Fort.Controllers
         {
             _questionService = questionService;
         }
-
+       
         [HttpPost("AskQuestion")]
-        public IActionResult AskQuestion(CreateQuestionRequest request,int id)
+        public IActionResult AskQuestion([FromBody] CreateQuestionRequest request, int id)
         {
             var result = _questionService.CreateQuestion(request,id);
             return Ok(result);
@@ -47,6 +48,14 @@ namespace Fort.Controllers
         public IActionResult GetQuestions()
         {
             var result = _questionService.GetQuestions();
+            if (result.Status == false) return BadRequest(result);
+            return Ok(result);
+        }
+
+        [HttpGet("GetQuestionsById")]
+        public IActionResult GetQuestionById(int id)
+        {
+            var result = _questionService.GetQuestionById(id);
             if (result.Status == false) return BadRequest(result);
             return Ok(result);
         }

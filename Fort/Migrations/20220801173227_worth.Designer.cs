@@ -11,14 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fort.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220702200054_init")]
-    partial class init
+    [Migration("20220801173227_worth")]
+    partial class worth
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.6")
+                .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Fort.Identity.Role", b =>
@@ -52,7 +52,6 @@ namespace Fort.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -63,12 +62,12 @@ namespace Fort.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = 1,
-                            CreatedOn = new DateTime(2022, 7, 2, 21, 0, 54, 124, DateTimeKind.Local).AddTicks(6089),
+                            CreatedBy = 0,
+                            CreatedOn = new DateTime(2022, 8, 1, 17, 32, 26, 984, DateTimeKind.Utc).AddTicks(3679),
                             Description = "Administrator",
                             IsDeleted = false,
-                            LastModifiedBy = 1,
-                            LastModifiedOn = new DateTime(2022, 7, 2, 21, 0, 54, 124, DateTimeKind.Local).AddTicks(6093),
+                            LastModifiedBy = 0,
+                            LastModifiedOn = new DateTime(2022, 8, 1, 17, 32, 26, 984, DateTimeKind.Utc).AddTicks(3679),
                             Name = "Admin"
                         });
                 });
@@ -106,9 +105,6 @@ namespace Fort.Migrations
                     b.Property<string>("PassWord")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("UserName")
-                        .HasColumnType("longtext");
-
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -117,27 +113,20 @@ namespace Fort.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = 1990,
-                            CreatedOn = new DateTime(2022, 7, 2, 21, 0, 54, 124, DateTimeKind.Local).AddTicks(4386),
-                            Email = "mary@mail.com",
+                            CreatedBy = 0,
+                            CreatedOn = new DateTime(2022, 8, 1, 17, 32, 26, 984, DateTimeKind.Utc).AddTicks(3661),
+                            Email = "maryam@mail.com",
                             IsDeleted = false,
                             LastModifiedBy = 0,
-                            LastModifiedOn = new DateTime(2022, 7, 2, 20, 0, 54, 124, DateTimeKind.Utc).AddTicks(4372),
-                            PassWord = "May",
-                            UserName = "Maryam"
+                            LastModifiedOn = new DateTime(2022, 8, 1, 17, 32, 26, 984, DateTimeKind.Utc).AddTicks(3664),
+                            PassWord = "12345"
                         });
                 });
 
-            modelBuilder.Entity("Fort.Identity.User_role", b =>
+            modelBuilder.Entity("Fort.Identity.UserRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("ApplicationRoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ApplicationUserId")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -161,10 +150,10 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("RoleId")
+                    b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -179,13 +168,13 @@ namespace Fort.Migrations
                         new
                         {
                             Id = 1,
-                            ApplicationRoleId = 1,
-                            ApplicationUserId = 1,
-                            CreatedBy = 1,
-                            CreatedOn = new DateTime(2022, 7, 2, 21, 0, 54, 124, DateTimeKind.Local).AddTicks(6134),
+                            CreatedBy = 0,
+                            CreatedOn = new DateTime(2022, 8, 1, 17, 32, 26, 984, DateTimeKind.Utc).AddTicks(3682),
                             IsDeleted = false,
-                            LastModifiedBy = 1,
-                            LastModifiedOn = new DateTime(2022, 7, 2, 21, 0, 54, 124, DateTimeKind.Local).AddTicks(6137)
+                            LastModifiedBy = 0,
+                            LastModifiedOn = new DateTime(2022, 8, 1, 17, 32, 26, 984, DateTimeKind.Utc).AddTicks(3683),
+                            RoleId = 1,
+                            UserId = 1
                         });
                 });
 
@@ -204,19 +193,19 @@ namespace Fort.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int?>("DeletedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("EmailAddress")
-                        .HasColumnType("longtext");
-
                     b.Property<string>("FirstName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Gender")
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
@@ -231,7 +220,7 @@ namespace Fort.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("longtext");
 
                     b.Property<int>("UserId")
@@ -243,6 +232,23 @@ namespace Fort.Migrations
                         .IsUnique();
 
                     b.ToTable("Admins");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 0,
+                            CreatedBy = 1,
+                            CreatedOn = new DateTime(2022, 8, 1, 17, 32, 26, 984, DateTimeKind.Local).AddTicks(3695),
+                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Ada",
+                            Gender = "Female",
+                            IsDeleted = false,
+                            LastModifiedBy = 1,
+                            LastModifiedOn = new DateTime(2022, 8, 1, 17, 32, 26, 984, DateTimeKind.Local).AddTicks(3710),
+                            LastName = "Obi",
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("Fort.Model.Answer", b =>
@@ -266,6 +272,9 @@ namespace Fort.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
@@ -278,14 +287,11 @@ namespace Fort.Migrations
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("QuestionId");
+                    b.HasIndex("DoctorId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("QuestionId");
 
                     b.ToTable("Answers");
                 });
@@ -325,7 +331,7 @@ namespace Fort.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("checkUps");
+                    b.ToTable("CheckUps");
                 });
 
             modelBuilder.Entity("Fort.Model.Doctor", b =>
@@ -337,10 +343,16 @@ namespace Fort.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
+                    b.Property<string>("CertificatePath")
+                        .HasColumnType("longtext");
+
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DeletedBy")
@@ -349,10 +361,10 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("EmailAddress")
+                    b.Property<string>("FirstName")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("Gender")
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
@@ -367,6 +379,9 @@ namespace Fort.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Specialization")
                         .HasColumnType("longtext");
 
@@ -375,9 +390,6 @@ namespace Fort.Migrations
 
                     b.Property<int>("ValidateDoctor")
                         .HasColumnType("int");
-
-                    b.Property<string>("Year")
-                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -396,13 +408,13 @@ namespace Fort.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int>("ApplicationuserId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DeletedBy")
@@ -411,10 +423,10 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("EmailAddress")
+                    b.Property<string>("FirstName")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("Gender")
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
@@ -429,12 +441,15 @@ namespace Fort.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Year")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("longtext");
+
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationuserId")
+                    b.HasIndex("userId")
                         .IsUnique();
 
                     b.ToTable("Patients");
@@ -479,7 +494,7 @@ namespace Fort.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("PatientSymptoms");
+                    b.ToTable("PatientCheckups");
                 });
 
             modelBuilder.Entity("Fort.Model.Question", b =>
@@ -512,10 +527,18 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int?>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("RecievedResponse")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
 
                     b.HasIndex("UserId");
 
@@ -554,7 +577,7 @@ namespace Fort.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("symptoms");
+                    b.ToTable("Symptoms");
                 });
 
             modelBuilder.Entity("Fort.Model.SymptomCheckup", b =>
@@ -596,18 +619,22 @@ namespace Fort.Migrations
 
                     b.HasIndex("SymptomId");
 
-                    b.ToTable("SymptomCheckup");
+                    b.ToTable("SymptomCheckups");
                 });
 
-            modelBuilder.Entity("Fort.Identity.User_role", b =>
+            modelBuilder.Entity("Fort.Identity.UserRole", b =>
                 {
                     b.HasOne("Fort.Identity.Role", "Role")
-                        .WithMany("ApplicationUserRoles")
-                        .HasForeignKey("RoleId");
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Fort.Identity.User", "User")
-                        .WithMany("ApplicationUserRoles")
-                        .HasForeignKey("UserId");
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Role");
 
@@ -616,54 +643,54 @@ namespace Fort.Migrations
 
             modelBuilder.Entity("Fort.Model.Admin", b =>
                 {
-                    b.HasOne("Fort.Identity.User", "ApplicationUser")
-                        .WithOne("ApplicationAdmin")
+                    b.HasOne("Fort.Identity.User", "User")
+                        .WithOne("Admin")
                         .HasForeignKey("Fort.Model.Admin", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ApplicationUser");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Fort.Model.Answer", b =>
                 {
+                    b.HasOne("Fort.Model.Doctor", "Doctor")
+                        .WithMany("Answers")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Fort.Model.Question", "Question")
                         .WithMany("answers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Fort.Identity.User", "User")
-                        .WithMany("UserAnswers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Doctor");
 
                     b.Navigation("Question");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Fort.Model.Doctor", b =>
                 {
-                    b.HasOne("Fort.Identity.User", "ApplicationUser")
-                        .WithOne("ApplicationDoctor")
+                    b.HasOne("Fort.Identity.User", "User")
+                        .WithOne("Doctor")
                         .HasForeignKey("Fort.Model.Doctor", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ApplicationUser");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Fort.Model.Patient", b =>
                 {
-                    b.HasOne("Fort.Identity.User", "ApplicationUser")
-                        .WithOne("ApplicationPatient")
-                        .HasForeignKey("Fort.Model.Patient", "ApplicationuserId")
+                    b.HasOne("Fort.Identity.User", "User")
+                        .WithOne("Patient")
+                        .HasForeignKey("Fort.Model.Patient", "userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ApplicationUser");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Fort.Model.PatientCheckup", b =>
@@ -687,8 +714,12 @@ namespace Fort.Migrations
 
             modelBuilder.Entity("Fort.Model.Question", b =>
                 {
+                    b.HasOne("Fort.Model.Patient", null)
+                        .WithMany("Questions")
+                        .HasForeignKey("PatientId");
+
                     b.HasOne("Fort.Identity.User", "User")
-                        .WithMany("UserQuestions")
+                        .WithMany("Users")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -717,22 +748,20 @@ namespace Fort.Migrations
 
             modelBuilder.Entity("Fort.Identity.Role", b =>
                 {
-                    b.Navigation("ApplicationUserRoles");
+                    b.Navigation("UserRoles");
                 });
 
             modelBuilder.Entity("Fort.Identity.User", b =>
                 {
-                    b.Navigation("ApplicationAdmin");
+                    b.Navigation("Admin");
 
-                    b.Navigation("ApplicationDoctor");
+                    b.Navigation("Doctor");
 
-                    b.Navigation("ApplicationPatient");
+                    b.Navigation("Patient");
 
-                    b.Navigation("ApplicationUserRoles");
+                    b.Navigation("UserRoles");
 
-                    b.Navigation("UserAnswers");
-
-                    b.Navigation("UserQuestions");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Fort.Model.CheckUp", b =>
@@ -742,9 +771,16 @@ namespace Fort.Migrations
                     b.Navigation("SymptomCheckups");
                 });
 
+            modelBuilder.Entity("Fort.Model.Doctor", b =>
+                {
+                    b.Navigation("Answers");
+                });
+
             modelBuilder.Entity("Fort.Model.Patient", b =>
                 {
                     b.Navigation("PatientCheckup");
+
+                    b.Navigation("Questions");
                 });
 
             modelBuilder.Entity("Fort.Model.Question", b =>

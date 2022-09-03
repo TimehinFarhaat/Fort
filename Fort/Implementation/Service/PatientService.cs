@@ -12,91 +12,86 @@ namespace Fort.Implementation.Service
         private readonly IPatientRepository _patientRepository;
         private readonly IRoleRepository _roleRepository;
 
+
         public PatientService(IUserRepository userRepository, IPatientRepository patientRepository, IRoleRepository roleRepository)
         {
             _userRepository = userRepository ;
             _patientRepository = patientRepository ;
-            _roleRepository = roleRepository ;
-        }
+             _roleRepository = roleRepository ; 
+
+    }
 
         public BaseResponse AddPatient(CreatePatientRequest patientRequest)
         {
-            if(patientRequest == null)
+
+            var checkUser = _userRepository.GetUser(patientRequest.EmailAddress);
+
+            if (checkUser != null)
             {
                 return new BaseResponse
                 {
-                    Message = "Invalid input",
-                    Status = false,
-                };
-            }
-           
-           
-
-
-            var s = _userRepository.GetByExpression(s => s.UserName == patientRequest.FirstName);
-
-            if (s != null)
-            {
-                return new BaseResponse
-                {
-                    Message = "UnSuccessfully added",
+                    Message = "Patient already exist",
                     Status = false
                 };
             }
 
-
-            var user = new User
-            {
-                UserName = patientRequest.FirstName,
-                Email = patientRequest.EmailAddress,
-                PassWord = patientRequest.PassWord,
-                
-
-            };
-            
+                var user = new User
+                {
+                    Email = patientRequest.EmailAddress,
+                    PassWord = BCrypt.Net.BCrypt.HashPassword(patientRequest.PassWord),
+                    PhoneNumber = patientRequest.PhoneNumber,
+                    Age = patientRequest.Age,
+                    Gender = patientRequest.Gender,
+                };
             _userRepository.Add(user);
-            var roles = _roleRepository.GetByExpression(r => r.Name == "Patients");
+            List<string> r= new List<string> {"patient" };
 
-            var userRole = new User_role
-            {
-                ApplicationUserId = user.Id,
-                User = user,
-                ApplicationRoleId = roles.Id,
-                Role = roles,
-                CreatedOn=DateTime.Now,
-            };
+            var roles = _roleRepository.GetSelectedUserRole(r);
 
-            user.ApplicationUserRoles.Add(userRole);
-
-            
-            
             var patient = new Patient
             {
+                DateOfBirth = DateTime.Now,
                 FirstName = patientRequest.FirstName,
                 LastName = patientRequest.LastName,
-                EmailAddress = patientRequest.EmailAddress,
-                Age = patientRequest.Age,
-                ApplicationUser = user,
-                ApplicationuserId = user.Id,
+                User = user,
                 CreatedOn = DateTime.Now,
+                IsDeleted = false,
+                LastModifiedBy = user.Id,
                 CreatedBy = user.Id,
-                IsDeleted=false,
-               
+                userId = user.Id
             };
-
+            foreach (var role in roles)
+            {
+                var userRole = new UserRole
+                {
+                    CreatedOn = DateTime.Now,
+                    IsDeleted = false,
+                    LastModifiedBy = user.Id,
+                    CreatedBy = user.Id,
+                    Role = role,
+                    RoleId = role.Id,
+                    User = user,
+                    UserId = user.Id
+                };
+                user.UserRoles.Add(userRole);
+            }
+           
             _patientRepository.Add(patient);
             return new BaseResponse
             {
-                Message = "Successfully added",
+                Message = "Successful",
                 Status = true
             };
+
+
+
         }
-
-
-
+            
+            
+        
         public BaseResponse DeletePatient(int patientId)
         {
-            var patient = _patientRepository.Getpatient(patientId);
+            var patient = _patientRepository.GetpatientById(patientId);
             if (patient == null)
             {
                 return new BaseResponse
@@ -105,9 +100,12 @@ namespace Fort.Implementation.Service
                     Status = false,
                 };
             }
+            var user = _userRepository.GetUser(patient.User.Id);
             patient.IsDeleted = true;
+            user.IsDeleted=true;
             patient.DeletedOn = DateTime.Now;
-            
+
+            _userRepository.Update(user);
             _patientRepository.Update(patient);
             return new BaseResponse
             {
@@ -121,7 +119,7 @@ namespace Fort.Implementation.Service
 
         public PatientResponsModel GetPatientById(int id)
         {
-            var patient = _patientRepository.Getpatient(id);
+            var patient = _patientRepository.GetpatientById(id);
             if (patient== null)
             {
                 return new PatientResponsModel
@@ -134,17 +132,67 @@ namespace Fort.Implementation.Service
             {
                 Data = new PatientDto
                 {
-                    Email = patient.EmailAddress,
-                    FirstName = patient.FirstName,
                     Id = patient.Id,
+                    UserName = patient.FirstName + " " + patient.LastName,
+                    Email = patient.User.Email,
+                    Age = patient.User.Age,
+                    Gender = patient.User.Gender,
+                    FirstName = patient.FirstName,
+                    UserId = patient.userId,
                     LastName = patient.LastName,
-                    PassWord = patient.ApplicationUser.PassWord,
+                    userRoles = patient.User.UserRoles.Select(e => e.Role.Name).ToList(),
+                    DateofBirth = patient.DateOfBirth,
+                    PhoneNumber = patient.User.PhoneNumber,
+                    DateCreated = patient.CreatedOn
+
 
                 },
                 Message = "Successfully get",
                 Status = true
             };
         }
+
+
+
+
+
+        public PatientResponsModel GetPatientByEmail(string email)
+        {
+            var patient = _patientRepository.GetpatientByEmail(email);
+
+
+            if (patient == null)
+            {
+                return new PatientResponsModel
+                {
+                    Message = "not found",
+                    Status = false,
+                };
+            }
+           
+            return new PatientResponsModel
+            {
+                Data = new PatientDto
+                {
+                    Id = patient.Id,
+                    UserName = patient.FirstName + " " + patient.LastName,
+                    Email = patient.User.Email,
+                    Age = patient.User.Age,
+                    Gender = patient.User.Gender,
+                    FirstName = patient.FirstName,
+                    UserId = patient.userId,
+                    LastName = patient.LastName,
+                    userRoles = patient.User.UserRoles.Select(e => e.Role.Name).ToList(),
+                    DateofBirth = patient.DateOfBirth,
+                    PhoneNumber = patient.User.PhoneNumber,
+                    DateCreated = patient.CreatedOn
+
+                },
+                Message = "Successfully get",
+                Status = true
+            };
+        }
+
 
         public PatientResponseModel GetPatients()
         {
@@ -153,24 +201,25 @@ namespace Fort.Implementation.Service
             {
                 Data = patients.Select(patient => new PatientDto
                 {
-                    Email = patient.EmailAddress,
-                    FirstName = patient.FirstName,
-                    Id = patient.Id,
+                    Email = patient.User.Email,
+                    Id=patient.Id,
+                    UserName = patient.FirstName +"  "+ patient.LastName,
+                    Gender= patient.User.Gender,
                     LastName = patient.LastName,
-                    PassWord = patient.ApplicationUser.PassWord,
+                    UserId = patient.userId,
+                    PhoneNumber = patient.User.PhoneNumber,
 
                 }).ToList(),
                 Message = "Successfully added",
                 Status = true
             };
-        }
+        } 
 
         public BaseResponse UpdatePatient(UpdatePatientRequest request, int id)
         {
-            var patient = _patientRepository.Getpatient(id);
-            var user = _userRepository.GetUser(id);
-
-            if (user == null)
+            var patient = _patientRepository.GetpatientById(id);
+        
+            if (patient == null)
             {
                 return new BaseResponse()
                 {
@@ -179,17 +228,16 @@ namespace Fort.Implementation.Service
                 };
             }
 
-            {
-                patient.Age = request.Age;
-                patient.ApplicationUser = user;
-                patient.EmailAddress = request.EmailAddress;
-                patient.LastModifiedBy = user.Id;
-                patient.LastModifiedOn = DateTime.Now;
-                patient.ApplicationuserId = user.Id;
+            var user = _userRepository.GetUser(patient.User.Id);
 
-                patient.Id = user.Id;
-            };
-
+            var roles = _roleRepository.GetUserRole(patient.User.Id);
+            patient.FirstName = request.FirstName;
+            patient.LastName = request.LastName;
+            patient.User.Age = request.Age;
+            user.CreatedOn = DateTime.Now;
+            user.Email = request.EmailAddress;
+            user.LastModifiedBy = id;
+            patient.User.PhoneNumber = request.PhoneNumber;
             _userRepository.Update(user);
             _patientRepository.Update(patient);
             return new BaseResponse
@@ -198,5 +246,7 @@ namespace Fort.Implementation.Service
                 Status = true
             };
         }
+
+     
     }
 }

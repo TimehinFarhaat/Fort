@@ -5,9 +5,10 @@ namespace Fort.DTOs
     public class CheckupDto
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public IList<string> Symptom { get; set; } = new List<string>();
+        public string Name { get; set; }   
         public string Description { get; set; }
-        public ICollection<SymptomDto> Symptoms { get; set; } = new HashSet<SymptomDto>();
+        public ICollection<SymptomDto> SymptomDto { get; set; } = new HashSet<SymptomDto>();
       
     }
 
@@ -17,9 +18,10 @@ namespace Fort.DTOs
     public class CreateCheckupRequest
     {
 
+        public IList<string> Symptoms { get; set; } = new List<string>();
         public string Name { get; set; }
         public string Description { get; set; }
-        public ICollection<int> SymptomsId { get; set; }=new HashSet<int>();
+      
 
 
     }

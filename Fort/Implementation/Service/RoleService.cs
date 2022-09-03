@@ -20,18 +20,10 @@ namespace Fort.Implementation.Service
 
 
 
-        public BaseResponse AddRole(CreateRoleRequest role,int AdminId)
+        public BaseResponse AddRole(CreateRoleRequest role)
         {
-           var admin=_adminRepository.GetAdmin(AdminId);
-            if (admin == null)
-            {
-                return new BaseResponse
-                {
-                    Message = "Admin does not exist",
-                    Status = false,
-                };
-            }
-            if(role != null)
+           
+            
             {
                 var rul = _roleRepository.GetByExpression(d => d.Name == role.Name);
                 if (rul == null)
@@ -42,7 +34,7 @@ namespace Fort.Implementation.Service
                         CreatedOn = DateTime.Now,
                         Description = role.Description,
                         LastModifiedOn = DateTime.Now,
-                        CreatedBy=admin.Id,
+             
                         IsDeleted = false,
 
                     };
@@ -59,11 +51,7 @@ namespace Fort.Implementation.Service
                     Status = false,
                 };
             }
-            return new BaseResponse
-            {
-                Message = "UnSuccessful",
-                Status = false,
-            };
+            
         }
 
 
@@ -109,7 +97,7 @@ namespace Fort.Implementation.Service
                     Description = role.Description,
                     Id = id,
                     Name = role.Name,
-                    Roles = role.ApplicationUserRoles
+                    Roles = role.UserRoles
                 },
                 Message ="Successful",
                 Status=true,
@@ -126,7 +114,7 @@ namespace Fort.Implementation.Service
                     Description = role.Description,
                     Id = role.Id,
                     Name = role.Name,
-                    Roles = role.ApplicationUserRoles,
+                    Roles = role.UserRoles,
                     
 
                 }).ToList(),
@@ -147,7 +135,7 @@ namespace Fort.Implementation.Service
                         Description = role.Description,
                         Id = role.Id,
                         Name = role.Name,
-                        Roles = role.ApplicationUserRoles
+                        Roles = role.UserRoles
 
                     }).ToList(),
                     Message = "Successful",

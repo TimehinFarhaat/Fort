@@ -1,5 +1,5 @@
 ﻿using Fort.DTOs;
-using Fort.Interfaces.Service;
+using Fort.Interfaces.Repository;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -11,11 +11,13 @@ namespace Fort.Implementation.Service
     {
         
         public readonly string Key;
+       
 
         public Authentication(string _key)
         {
-            
+
             Key = _key;
+          
 
         }
 
@@ -25,15 +27,15 @@ namespace Fort.Implementation.Service
         public string GenerateToken(UserDto user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-
+           
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
             claims.Add(new Claim(ClaimTypes.Email, user.Email));
-            claims.Add(new Claim(ClaimTypes.Name, user.UserName));
+           
 
-            foreach (var item in user.Roles)
+            foreach (var role in user.UserRoles)
             {
-                claims.Add(new Claim(ClaimTypes.Role, item.Role.Name));
+                claims.Add(new Claim(ClaimTypes.Role, role.Name));
             }
 
             var key = Encoding.ASCII.GetBytes(Key);
