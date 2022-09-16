@@ -27,7 +27,7 @@ namespace Fort.Implementation.Repository
         public Admin GetAdmin(int id)
         {
            
-            var admin = _context.Admins.Include(x => x.User).ThenInclude(t=>t.UserRoles).ThenInclude(r=>r.Role).FirstOrDefault(x => x.UserId == id&& x.IsDeleted==false);    
+            var admin = _context.Admins.Include(x => x.User).ThenInclude(t=>t.UserRoles).ThenInclude(r=>r.Role).SingleOrDefault(x => x.User.Id == id && x.IsDeleted==false);    
             return admin;
         }
 

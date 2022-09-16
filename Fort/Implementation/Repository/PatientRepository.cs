@@ -12,7 +12,7 @@ namespace Fort.Implementation.Repository
         }
         public Patient GetpatientById(int id)
         {
-            var patient = _context.Patients.Include(u=>u.User).ThenInclude(a=> a.UserRoles).ThenInclude(r=>r.Role).SingleOrDefault(u => u.userId == id && u.IsDeleted == false );
+            var patient = _context.Patients.Include(u=>u.User).ThenInclude(a=> a.UserRoles).ThenInclude(r=>r.Role).SingleOrDefault(u => u.UserId == id && u.IsDeleted == false );
             return patient;
         }
 

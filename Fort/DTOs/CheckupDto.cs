@@ -8,6 +8,7 @@ namespace Fort.DTOs
         public IList<string> Symptom { get; set; } = new List<string>();
         public string Name { get; set; }   
         public string Description { get; set; }
+        public DateTime DateTime { get; set; }
         public ICollection<SymptomDto> SymptomDto { get; set; } = new HashSet<SymptomDto>();
       
     }

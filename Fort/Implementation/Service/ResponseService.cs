@@ -17,11 +17,11 @@ namespace Fort.Implementation.Service
             Configuration = configuration;
         }
 
-        public async Task<BaseResponse> SendResponse(string phoneNumber)
+        public async Task<BaseResponse> SendResponse(string phoneNumber,string Sendmessage)
         {
             var publicKey = Configuration.GetSection("SmsConfiguration")["publicKey"];
             var accessToken = Configuration.GetSection("SmsConfiguration")["accessToken"];
-            string message = "This is a test message";
+            string message = Sendmessage;
             SmsSender sender = new SmsSender(publicKey, accessToken, "farhaat");
             var result = await sender.SendSms(phoneNumber, message);
 

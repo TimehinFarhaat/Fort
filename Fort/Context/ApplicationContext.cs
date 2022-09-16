@@ -13,24 +13,17 @@ namespace Fort.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            
-
             modelBuilder.Entity<PatientCheckup>().HasKey(pc => pc.Id);
             modelBuilder.Entity<SymptomCheckup>().HasKey(u => u.Id);
+
+            modelBuilder.Entity<User>().HasMany<View>(c => c.Views);
+            modelBuilder.Entity<View>().HasOne<User>(c => c.User);  
 
             modelBuilder.Entity<PatientCheckup>().HasOne<Patient>(c => c.Patient).WithMany(s => s.PatientCheckup).HasForeignKey(d => d.PatientId);
 
             modelBuilder.Entity<PatientCheckup>().HasOne<CheckUp>(c => c.Checkup).WithMany(s => s.PatientCheckups).HasForeignKey(d => d.CheckUpId);
-
-
-
-
-
-
-
-
-
+            modelBuilder.Entity<User>().HasIndex(p => p.Email).IsUnique();
+            modelBuilder.Entity<User>().HasIndex(p => p.Id).IsUnique();
 
             var user = new User
             {
@@ -76,9 +69,6 @@ namespace Fort.Context
             modelBuilder.Entity<Admin>(u => u.HasData(admin));
             modelBuilder.Entity<User>(u => u.HasData(user));
             modelBuilder.Entity<UserRole>(u => u.HasData(Userrol));
-
-
-
         }
     
         public DbSet<User> Users { get; set; }
@@ -90,7 +80,7 @@ namespace Fort.Context
         public DbSet<PatientCheckup> PatientCheckups { get; set; }
         public DbSet<CheckUp> CheckUps { get; set; }
         public DbSet<Question> Questions { get; set; }
-        public DbSet<Rating>Ratings { get; set; }
+        public DbSet<View> Views { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Symptom> Symptoms { get; set; }
         public DbSet<SymptomCheckup> SymptomCheckups{ get; set; }

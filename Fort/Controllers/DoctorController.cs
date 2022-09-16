@@ -12,54 +12,45 @@ namespace Fort.Controllers
         private readonly IDoctorService _doctorService;
         private readonly IWebHostEnvironment _webHostEnvironment;
         
-    
-
         public   DoctorController(IDoctorService doctorService, IWebHostEnvironment webHostEnvironment)
         {
             _doctorService = doctorService;
             _webHostEnvironment = webHostEnvironment;
-           
-            
         }
 
-
-        
-
         [HttpPost("RegisterDoctor")]
-        public IActionResult RegisterDoctor([FromForm] CreateDoctorRequest doctorRequestmodel, int id)
+        public async Task <IActionResult> RegisterDoctor([FromForm] CreateDoctorRequest doctorRequestmodel, int id)
         {
             var files = HttpContext.Request.Form;
-            if(files.Count != 0)
+            if (files.Count != 0)
             {
                 string certificateDirectory = Path.Combine(_webHostEnvironment.WebRootPath, "DoctorCertificate");
                 Directory.CreateDirectory(certificateDirectory);
-                foreach(var file in files.Files)
+                foreach (var file in files.Files)
                 {
                     FileInfo fileInfo = new FileInfo(file.FileName);
-                    if(fileInfo.Extension.ToLower() != "pdf")
+                    if (fileInfo.Extension.ToLower() != ".pdf")
                     {
-                        return BadRequest();
+                        return BadRequest("File format not supported");
                     }
                     string doctorCertificate = "doctor" + Guid.NewGuid().ToString().Substring(2, 9) + $"{fileInfo.Extension}";
                     string fullPath = Path.Combine(certificateDirectory, doctorCertificate);
-                    using(var fileStream = new FileStream(fullPath, FileMode.Create))
+                    using (var fileStream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
                     doctorRequestmodel.Certificate = doctorCertificate;
                 }
-                var result = _doctorService.AddDoctor(doctorRequestmodel, id);
-                return Ok(result); 
-                
+
+                var result = await _doctorService.AddDoctor(doctorRequestmodel, id);
+                return Ok(result);
             }
-
-
-            return BadRequest();
+            return BadRequest("File not found");
         }
 
 
         [HttpGet("GetDoctorDetailsById")]
-        public IActionResult GetDoctorDetailsById(int id)
+        public IActionResult GetDoctorDetailsById([FromQuery]int id)
         {
             var result = _doctorService.GetDoctorById(id);
             return Ok(result);
@@ -85,12 +76,12 @@ namespace Fort.Controllers
         public IActionResult DeleteDoctor(int id)
         {
             var result = _doctorService.DeleteDoctor(id);
-            return Ok(result.Message);
+            return Ok(result);
         }
 
 
         [HttpPatch("UpdateDoctor")]
-        public IActionResult UpdateDoctor(UpdateDoctorRequest doctorRequestmodel, int id)
+        public IActionResult UpdateDoctor([FromForm]UpdateDoctorRequest doctorRequestmodel, int id)
         {
             var result = _doctorService.UpdateDoctor(doctorRequestmodel, id);
             return Ok(result);

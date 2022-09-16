@@ -23,6 +23,7 @@ namespace Fort.Controllers
         public IActionResult CreateDiagnosis([FromBody]CreateCheckupRequest requestmodel, int id)
         {
             var result = _checkupService.CreateCheckup(requestmodel, id);
+            if (!result.Status) return BadRequest(result);
             return Ok(result);
         }
 
@@ -30,7 +31,7 @@ namespace Fort.Controllers
         public IActionResult DeleteDiagnose(int id)
         {
             var result = _checkupService.DeleteCheckup( id);
-            if (result.Status == false) return BadRequest(result.Message);
+            if (result.Status == false) return BadRequest(result);
             return Ok(result);
         }
 
@@ -48,7 +49,7 @@ namespace Fort.Controllers
         public IActionResult GetPreviousDiagnose(int Id)
         {
             var result = _checkupService.GetPreviouscheckup(Id);
-            return Ok(result);
+           return Ok(result);
         }
 
 

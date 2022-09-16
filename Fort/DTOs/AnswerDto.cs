@@ -5,7 +5,9 @@
         public int AnswerId { get; set; }
       
         public string QuestionDescription { get; set; }
-       public int  Rating { get; set; }
+        public int UnCheckedAnswers { get; set; }
+        public int  PositiveRating { get; set; }
+        public int NegativeRating { get; set; }
         public string Description { get; set; }
         public string DoctorName { get; set; }
     }

@@ -14,6 +14,10 @@
         public DateTime? LastModifiedOn { get; set; } = DateTime.UtcNow;
 
         public DateTime? DeletedOn { get; set; }
+        
+        public DateTime?  LoggedInTime { get; set; }
+        public DateTime?  LoggedOutTime { get; set; }
+        public DateTime?  PreviousLoggedInTime { get; set; }
 
         public int? DeletedBy { get; set; }
 

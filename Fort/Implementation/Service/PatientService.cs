@@ -11,17 +11,21 @@ namespace Fort.Implementation.Service
         private readonly IUserRepository _userRepository;
         private readonly IPatientRepository _patientRepository;
         private readonly IRoleRepository _roleRepository;
+        private readonly INumberVerificationService _numberVerificationService;
+        private readonly IMailService _mailService;
 
 
-        public PatientService(IUserRepository userRepository, IPatientRepository patientRepository, IRoleRepository roleRepository)
+        public PatientService(IUserRepository userRepository, IPatientRepository patientRepository, IRoleRepository roleRepository, INumberVerificationService numberVerificationService,IMailService mailService)
         {
             _userRepository = userRepository ;
             _patientRepository = patientRepository ;
              _roleRepository = roleRepository ; 
+            _numberVerificationService = numberVerificationService;
+            _mailService = mailService ;
 
-    }
+        }
 
-        public BaseResponse AddPatient(CreatePatientRequest patientRequest)
+        public async Task<BaseResponse> AddPatient(CreatePatientRequest patientRequest)
         {
 
             var checkUser = _userRepository.GetUser(patientRequest.EmailAddress);
@@ -43,8 +47,24 @@ namespace Fort.Implementation.Service
                     Age = patientRequest.Age,
                     Gender = patientRequest.Gender,
                 };
+
+              var response = await _numberVerificationService.VerifyMobileNumber(patientRequest.PhoneNumber);
+            if (!response.Status) return new BaseResponse
+            {
+                Message = "Invalid phone number",
+                Status = false
+            };
+
+            var mailrequest = new MailRequest
+            {
+                ToEmail = patientRequest.EmailAddress,
+                ToName = patientRequest.FirstName + " " + patientRequest.LastName,
+                HtmlContent = "<html><body><div><h1> Welcome to FORT</h1><div><h3>Your online medical hub,you have the access to all services including:Search forhealth issues,view diagnostic results, ask questions pertining ypur health, and get to view answers on them by our seasoned doctors.</h3><h5>FORT!-</h5><h6>Fortifying Our Health Rightly Through Technology</h6></div></div>></body></html>"
+            };
+            //_mailService.SendEmail(mailrequest);
             _userRepository.Add(user);
-            List<string> r= new List<string> {"patient" };
+
+            List<string> r=   new List<string> {"patient" };
 
             var roles = _roleRepository.GetSelectedUserRole(r);
 
@@ -58,7 +78,7 @@ namespace Fort.Implementation.Service
                 IsDeleted = false,
                 LastModifiedBy = user.Id,
                 CreatedBy = user.Id,
-                userId = user.Id
+                UserId = user.Id
             };
             foreach (var role in roles)
             {
@@ -75,7 +95,9 @@ namespace Fort.Implementation.Service
                 };
                 user.UserRoles.Add(userRole);
             }
-           
+            
+            _userRepository.Update(user);
+
             _patientRepository.Add(patient);
             return new BaseResponse
             {
@@ -83,30 +105,41 @@ namespace Fort.Implementation.Service
                 Status = true
             };
 
-
-
         }
-            
-            
-        
+
+
+
         public BaseResponse DeletePatient(int patientId)
         {
-            var patient = _patientRepository.GetpatientById(patientId);
-            if (patient == null)
+            //var patient = _patientRepository.GetpatientById(patientId);
+            //if (patient == null)
+            //{
+            //    return new BaseResponse
+            //    {
+            //        Message = "not found",
+            //        Status = false,
+            //    };
+            //}
+            var user = _userRepository.GetUser(patientId);
+            if (user != null)
+            {
+                user.IsDeleted = true;
+                user.DeletedOn= DateTime.Now;
+                //patient.IsDeleted = true;
+                //patient.DeletedOn = DateTime.Now;
+            }
+            else
             {
                 return new BaseResponse
                 {
-                    Message = "not found",
+                    Message = " user not found",
                     Status = false,
                 };
+
             }
-            var user = _userRepository.GetUser(patient.User.Id);
-            patient.IsDeleted = true;
-            user.IsDeleted=true;
-            patient.DeletedOn = DateTime.Now;
 
             _userRepository.Update(user);
-            _patientRepository.Update(patient);
+            //_patientRepository.Update(patient);
             return new BaseResponse
             {
                 Message = "Deleted successfully",
@@ -138,7 +171,7 @@ namespace Fort.Implementation.Service
                     Age = patient.User.Age,
                     Gender = patient.User.Gender,
                     FirstName = patient.FirstName,
-                    UserId = patient.userId,
+                    UserId = patient.UserId,
                     LastName = patient.LastName,
                     userRoles = patient.User.UserRoles.Select(e => e.Role.Name).ToList(),
                     DateofBirth = patient.DateOfBirth,
@@ -180,7 +213,7 @@ namespace Fort.Implementation.Service
                     Age = patient.User.Age,
                     Gender = patient.User.Gender,
                     FirstName = patient.FirstName,
-                    UserId = patient.userId,
+                    UserId = patient.UserId,
                     LastName = patient.LastName,
                     userRoles = patient.User.UserRoles.Select(e => e.Role.Name).ToList(),
                     DateofBirth = patient.DateOfBirth,
@@ -205,8 +238,9 @@ namespace Fort.Implementation.Service
                     Id=patient.Id,
                     UserName = patient.FirstName +"  "+ patient.LastName,
                     Gender= patient.User.Gender,
+                    Age = patient.User.Age,
                     LastName = patient.LastName,
-                    UserId = patient.userId,
+                    UserId = patient.UserId,
                     PhoneNumber = patient.User.PhoneNumber,
 
                 }).ToList(),

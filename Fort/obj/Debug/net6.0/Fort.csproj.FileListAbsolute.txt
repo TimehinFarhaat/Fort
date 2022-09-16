@@ -45,3 +45,8 @@ D:\staa99\Desktop\My Project\Fort\Fort\obj\Debug\net6.0\refint\Fort.dll
 D:\staa99\Desktop\My Project\Fort\Fort\obj\Debug\net6.0\Fort.pdb
 D:\staa99\Desktop\My Project\Fort\Fort\obj\Debug\net6.0\Fort.genruntimeconfig.cache
 D:\staa99\Desktop\My Project\Fort\Fort\obj\Debug\net6.0\ref\Fort.dll
+D:\staa99\Desktop\My Project\Fort\Fort\bin\Debug\net6.0\FubarCoder.RestSharp.Portable.Core.dll
+D:\staa99\Desktop\My Project\Fort\Fort\bin\Debug\net6.0\FubarCoder.RestSharp.Portable.HttpClient.dll
+D:\staa99\Desktop\My Project\Fort\Fort\bin\Debug\net6.0\JsonSubTypes.dll
+D:\staa99\Desktop\My Project\Fort\Fort\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\staa99\Desktop\My Project\Fort\Fort\bin\Debug\net6.0\sib_api_v3_sdk.dll

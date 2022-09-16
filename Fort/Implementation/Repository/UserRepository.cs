@@ -17,12 +17,13 @@ namespace Fort.Implementation.Repository
 
         public User GetUser(int id)
         {
-             var user=_context.Users.SingleOrDefault(u=>u.Id== id && u.IsDeleted== false);
+             var user=_context.Users.Include(e=>e.UserRoles).ThenInclude(s=>s.Role).Include(f=>f.Views).SingleOrDefault(u=>u.Id== id && u.IsDeleted== false);
             return user;
         }
+      
         public User GetUser(string email )
         {
-            var user = _context.Users.Include(u=>u.UserRoles).ThenInclude(s=>s.Role).SingleOrDefault(u => u.Email == email && u.IsDeleted == false);
+            var user = _context.Users.Include(u=>u.UserRoles).ThenInclude(s=>s.Role).Include(f=>f.Views).SingleOrDefault(u => u.Email == email && u.IsDeleted == false);
             return user;
         }
 
@@ -32,17 +33,7 @@ namespace Fort.Implementation.Repository
             return users;
         }
 
-       
-
-
-        //public User GetByExpression(Expression<Func<User, bool>> expression)
-        //{
-        //    var user = _context.Users.Where(expression).Include(u => u.UserRoles).ThenInclude(p => p.Role).FirstOrDefault();
-        //    return user;
-        //}
-
-       
-
+      
         public IList<UserRole> GetUsersByRole(string name)
         {
 
@@ -52,5 +43,11 @@ namespace Fort.Implementation.Repository
             
             return rol.ToList();
         }
+
+        //public User GetUserViews(int userId)
+        //{
+        //    var userViews = _context.Users.Include(y => y.Views).SingleOrDefault(t => t.Id == userId);
+        //    return userViews;
+        //}
     }
 }

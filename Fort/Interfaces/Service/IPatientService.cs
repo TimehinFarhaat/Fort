@@ -4,7 +4,7 @@ namespace Fort.Interfaces.Service
 {
     public interface IPatientService
     {
-        public BaseResponse AddPatient(CreatePatientRequest patientRequest);
+        public Task<BaseResponse> AddPatient(CreatePatientRequest patientRequest);
         public PatientResponsModel GetPatientByEmail(string email);
         public PatientResponsModel GetPatientById(int id);
         public BaseResponse DeletePatient(int patientId);

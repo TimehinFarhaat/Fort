@@ -17,17 +17,13 @@ namespace Fort.Implementation.Service
     {
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
-        
-        
+        private readonly IQuestionRepository _questionRepository;
 
-
-
-        public UserService(IUserRepository userRepository, IRoleRepository roleRepository)
+        public UserService(IUserRepository userRepository, IRoleRepository roleRepository, IQuestionRepository questionRepository)
         {
-            _userRepository = userRepository;
-             _roleRepository= roleRepository;
-
-
+            _userRepository = userRepository ;
+            _roleRepository = roleRepository;
+            _questionRepository = questionRepository;
         }
 
         public BaseResponse DeleteUser(int userId)
@@ -205,7 +201,7 @@ namespace Fort.Implementation.Service
 
                     };
                 }
-
+               
                 return new LoginResponseModel
                 {
                     Message = "Login Suvccessful",
@@ -224,6 +220,135 @@ namespace Fort.Implementation.Service
                
             }
         }
+
+
+
+
+        public BaseResponse CollectPreviousTime(string email,DateTime time)
+        {
+
+            var user = _userRepository.GetUser(email);
+            user.PreviousLoggedInTime = user.LoggedInTime;
+            user.LoggedOutTime= time;
+            _userRepository.Update(user);
+            return new BaseResponse
+            {
+                Message = "Successful",
+                Status=true,
+            };
+        }
+
+
+        //public BaseResponse ViewQuestions(int userId)
+        //{
+        //    var user = _userRepository.GetUser(userId);
+        //    if (user == null)
+        //    {
+        //        return new BaseResponse
+        //        {
+        //            Message = "user does not exist",
+        //            Status = false,
+        //        };
+        //    }
+        //    var userViews = _userRepository.GetUserViews(user.Id);
+        //    var questions = _questionRepository.GetAll();
+        //    foreach (var question in questions)
+        //    {
+        //        var view = userViews.Views.Where(r => r.Question != question);
+
+        //        if (!view.Any())
+        //        {
+        //            var vie = new View()
+        //            {
+        //                Question = question,
+        //                QuestionId = question.Id,
+        //                UserId = userId,
+        //            };
+        //            user.Views.Add(vie);
+        //            _userRepository.Update(user);
+        //        }
+        //        else
+        //        {
+        //            foreach (var vie in view)
+        //            {
+        //                var vies = new View()
+        //                {
+        //                    Question = question,
+        //                    QuestionId = question.Id,
+        //                    UserId = userId,
+        //                };
+        //                user.Views.Add(vies);
+        //            }
+        //            _userRepository.Update(user);
+        //        }
+        //    }
+        //    return new BaseResponse
+        //    {
+        //        Message = "Viewed succesful",
+        //        Status = true
+        //    };
+        //}
+
+
+
+        //public BaseResponse ViewAnswers(int userId, int questionId)
+        //{
+        //    var user = _userRepository.GetUser(userId);
+        //    if (user == null)
+        //    {
+        //        return new BaseResponse
+        //        {
+        //            Message = "user does not exist",
+        //            Status = false,
+        //        };
+        //    }
+        //    var question = _questionRepository.GetQuestionById(questionId);
+        //    if (question != null)
+        //    {
+        //        return new BaseResponse
+        //        {
+        //            Message = "Question not found",
+        //            Status = false,
+        //        };
+        //    }
+        //    else
+        //    {
+        //        if (question.Answers.Count == 0)
+        //        {
+        //            return new BaseResponse
+        //            {
+        //                Message = "Question not found",
+        //                Status = false,
+        //            };
+        //        }
+        //        else
+        //        {
+        //            foreach (var ans in question.Answers)
+        //            {
+        //                var ansView = new View()
+        //                {
+        //                    Answer = ans,
+        //                    AnswerId = ans.Id,
+        //                    Question = question,
+        //                    QuestionId = question.Id,
+        //                    UserId = userId,
+        //                };
+        //                user.Views.Add(ansView);
+        //            }
+        //            _userRepository.Update(user);
+        //        }
+        //        return new BaseResponse
+        //        {
+        //            Message = "Viewed succesful",
+        //            Status = true
+        //        };
+        //    }
+
+        //}
+
+
+
+
 
         public BaseResponse UpdateUserRole(UpdateUserRoleRequest request, int id)
         {

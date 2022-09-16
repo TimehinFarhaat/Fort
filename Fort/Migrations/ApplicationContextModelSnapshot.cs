@@ -49,8 +49,17 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -61,11 +70,11 @@ namespace Fort.Migrations
                         {
                             Id = 1,
                             CreatedBy = 0,
-                            CreatedOn = new DateTime(2022, 8, 25, 17, 36, 53, 845, DateTimeKind.Utc).AddTicks(5455),
+                            CreatedOn = new DateTime(2022, 9, 15, 18, 45, 25, 920, DateTimeKind.Utc).AddTicks(4779),
                             Description = "Administrator",
                             IsDeleted = false,
                             LastModifiedBy = 0,
-                            LastModifiedOn = new DateTime(2022, 8, 25, 17, 36, 53, 845, DateTimeKind.Utc).AddTicks(5459),
+                            LastModifiedOn = new DateTime(2022, 9, 15, 18, 45, 25, 920, DateTimeKind.Utc).AddTicks(4783),
                             Name = "Admin"
                         });
                 });
@@ -92,7 +101,7 @@ namespace Fort.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Gender")
                         .HasColumnType("longtext");
@@ -106,13 +115,28 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("PassWord")
                         .HasColumnType("longtext");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.ToTable("Users");
 
@@ -122,13 +146,13 @@ namespace Fort.Migrations
                             Id = 1,
                             Age = 64,
                             CreatedBy = 0,
-                            CreatedOn = new DateTime(2022, 8, 25, 17, 36, 53, 541, DateTimeKind.Utc).AddTicks(6718),
+                            CreatedOn = new DateTime(2022, 9, 15, 18, 45, 25, 715, DateTimeKind.Utc).AddTicks(3301),
                             Email = "maryam@mail.com",
                             Gender = "Female",
                             IsDeleted = false,
                             LastModifiedBy = 0,
-                            LastModifiedOn = new DateTime(2022, 8, 25, 17, 36, 53, 541, DateTimeKind.Utc).AddTicks(6721),
-                            PassWord = "$2a$11$U6zmX7REwj1vYQpxPWgC.ulbX9YeV60soAKm80pN9D3wHkCbHCx3y",
+                            LastModifiedOn = new DateTime(2022, 9, 15, 18, 45, 25, 715, DateTimeKind.Utc).AddTicks(3304),
+                            PassWord = "$2a$11$1gJgZet6a/t7r.9yVEHFeeAuTGvs6EpIf.gKji49vZGzh7LrUFkFu",
                             PhoneNumber = "0804675464"
                         });
                 });
@@ -160,6 +184,15 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
@@ -179,10 +212,10 @@ namespace Fort.Migrations
                         {
                             Id = 1,
                             CreatedBy = 0,
-                            CreatedOn = new DateTime(2022, 8, 25, 17, 36, 53, 845, DateTimeKind.Utc).AddTicks(5473),
+                            CreatedOn = new DateTime(2022, 9, 15, 18, 45, 25, 920, DateTimeKind.Utc).AddTicks(4803),
                             IsDeleted = false,
                             LastModifiedBy = 0,
-                            LastModifiedOn = new DateTime(2022, 8, 25, 17, 36, 53, 845, DateTimeKind.Utc).AddTicks(5473),
+                            LastModifiedOn = new DateTime(2022, 9, 15, 18, 45, 25, 920, DateTimeKind.Utc).AddTicks(4804),
                             RoleId = 1,
                             UserId = 1
                         });
@@ -224,6 +257,15 @@ namespace Fort.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -239,12 +281,12 @@ namespace Fort.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1,
-                            CreatedOn = new DateTime(2022, 8, 25, 18, 36, 53, 845, DateTimeKind.Local).AddTicks(5492),
+                            CreatedOn = new DateTime(2022, 9, 15, 19, 45, 25, 920, DateTimeKind.Local).AddTicks(4818),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Ada",
                             IsDeleted = false,
                             LastModifiedBy = 1,
-                            LastModifiedOn = new DateTime(2022, 8, 25, 18, 36, 53, 845, DateTimeKind.Local).AddTicks(5517),
+                            LastModifiedOn = new DateTime(2022, 9, 15, 19, 45, 25, 920, DateTimeKind.Local).AddTicks(4838),
                             LastName = "Obi",
                             UserId = 1
                         });
@@ -283,10 +325,22 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("QuestionId")
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("NegativeRating")
                         .HasColumnType("int");
 
-                    b.Property<int>("Rating")
+                    b.Property<int>("PositiveRating")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -328,8 +382,17 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -374,6 +437,15 @@ namespace Fort.Migrations
 
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Specialization")
                         .HasColumnType("longtext");
@@ -428,12 +500,21 @@ namespace Fort.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("userId")
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("userId")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
                     b.ToTable("Patients");
@@ -469,8 +550,17 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("PatientId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -511,41 +601,26 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("PatientId")
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("PatientId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<bool>("RecievedResponse")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PatientId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Questions");
-                });
-
-            modelBuilder.Entity("Fort.Model.Rating", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("AnswerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Value")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AnswerId");
-
-                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("Fort.Model.Symptom", b =>
@@ -575,8 +650,17 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -613,6 +697,15 @@ namespace Fort.Migrations
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("SymptomId")
                         .HasColumnType("int");
 
@@ -623,6 +716,57 @@ namespace Fort.Migrations
                     b.HasIndex("SymptomId");
 
                     b.ToTable("SymptomCheckups");
+                });
+
+            modelBuilder.Entity("Fort.Model.View", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("DeletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("LastModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("LoggedOutTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("PreviousLoggedInTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Views");
                 });
 
             modelBuilder.Entity("Fort.Identity.UserRole", b =>
@@ -664,7 +808,7 @@ namespace Fort.Migrations
                         .IsRequired();
 
                     b.HasOne("Fort.Model.Question", "Question")
-                        .WithMany("answers")
+                        .WithMany("Answers")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -689,7 +833,7 @@ namespace Fort.Migrations
                 {
                     b.HasOne("Fort.Identity.User", "User")
                         .WithOne("Patient")
-                        .HasForeignKey("Fort.Model.Patient", "userId")
+                        .HasForeignKey("Fort.Model.Patient", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -717,28 +861,13 @@ namespace Fort.Migrations
 
             modelBuilder.Entity("Fort.Model.Question", b =>
                 {
-                    b.HasOne("Fort.Model.Patient", null)
+                    b.HasOne("Fort.Model.Patient", "Patient")
                         .WithMany("Questions")
-                        .HasForeignKey("PatientId");
-
-                    b.HasOne("Fort.Identity.User", "User")
-                        .WithMany("Users")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Fort.Model.Rating", b =>
-                {
-                    b.HasOne("Fort.Model.Answer", "Answer")
-                        .WithMany("Ratings")
-                        .HasForeignKey("AnswerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Answer");
+                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("Fort.Model.SymptomCheckup", b =>
@@ -760,6 +889,25 @@ namespace Fort.Migrations
                     b.Navigation("Symptom");
                 });
 
+            modelBuilder.Entity("Fort.Model.View", b =>
+                {
+                    b.HasOne("Fort.Model.Question", "Question")
+                        .WithMany("Views")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Fort.Identity.User", "User")
+                        .WithMany("Views")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Fort.Identity.Role", b =>
                 {
                     b.Navigation("UserRoles");
@@ -775,12 +923,7 @@ namespace Fort.Migrations
 
                     b.Navigation("UserRoles");
 
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Fort.Model.Answer", b =>
-                {
-                    b.Navigation("Ratings");
+                    b.Navigation("Views");
                 });
 
             modelBuilder.Entity("Fort.Model.CheckUp", b =>
@@ -804,7 +947,9 @@ namespace Fort.Migrations
 
             modelBuilder.Entity("Fort.Model.Question", b =>
                 {
-                    b.Navigation("answers");
+                    b.Navigation("Answers");
+
+                    b.Navigation("Views");
                 });
 
             modelBuilder.Entity("Fort.Model.Symptom", b =>

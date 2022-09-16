@@ -8,7 +8,7 @@ namespace Fort.Model
     {
       
        
-        public int userId { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
         public ICollection<Question> Questions { get; set; } = new HashSet<Question>();
         public ICollection<PatientCheckup> PatientCheckup { get; set; } = new HashSet<PatientCheckup>();

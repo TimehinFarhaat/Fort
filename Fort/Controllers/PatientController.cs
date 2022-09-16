@@ -24,9 +24,9 @@ namespace Fort.Controllers
 
 
         [HttpPost("RegisterPatient")]
-        public IActionResult Registerpatient([FromForm]CreatePatientRequest patientRequest)
+        public async Task<IActionResult> Registerpatient([FromForm]CreatePatientRequest patientRequest)
         {
-            var result = _patientService.AddPatient(patientRequest);
+            var result = await _patientService.AddPatient(patientRequest);
             return Ok(result);
         }
 
@@ -55,10 +55,10 @@ namespace Fort.Controllers
 
 
         [HttpDelete("DeletePatient")]
-        public IActionResult DeleteDoctor(int id)
+        public IActionResult DeletePatient(int id)
         {
             var result = _patientService.DeletePatient(id);
-            return Ok(result.Message);
+            return Ok(result);
         }
 
 

@@ -13,23 +13,23 @@ namespace Fort.Implementation.Service
         private readonly IPatientRepository _patientRepository;
         private readonly IAdminRepository _adminRepository;
         private readonly IRoleRepository _roleRepository;
+        private readonly INumberVerificationService _numberVerificationService;
 
-
-        public AdminService(IUserRepository userRepository,  IAdminRepository adminRepository, IRoleRepository roleRepository,IPatientRepository patientRepository)
+        public AdminService(IUserRepository userRepository, IPatientRepository patientRepository, IAdminRepository adminRepository, IRoleRepository roleRepository, INumberVerificationService numberVerificationService)
         {
             _userRepository = userRepository;
+            _patientRepository = patientRepository;
             _adminRepository = adminRepository;
-            _patientRepository= patientRepository;
-            _roleRepository = roleRepository;   
-            
+            _roleRepository = roleRepository;
+            _numberVerificationService = numberVerificationService;
         }
 
-        public BaseResponse AddAdmin(CreateAdminRequest Adminrequest)
+        public async Task<BaseResponse> AddAdmin(CreateAdminRequest Adminrequest)
         {
           
             var q = _userRepository.GetByExpression(s => s.Email == Adminrequest.EmailAddress);
 
-            if (q == null)
+            if (q != null)
             {
                 return new BaseResponse
                 {
@@ -50,8 +50,9 @@ namespace Fort.Implementation.Service
                 };
                 List<string> s = new List<string> {"Admin" }; 
                 var roles = _roleRepository.GetSelectedUserRole(s);
-                
-                var admin = new Admin
+            await _numberVerificationService.VerifyMobileNumber(Adminrequest.Phonenumber);
+                        _userRepository.Add(user);
+            var admin = new Admin
                 {
                     DateOfBirth = DateTime.Now,
                     FirstName = Adminrequest.FirstName,
@@ -76,7 +77,6 @@ namespace Fort.Implementation.Service
                     };
                     user.UserRoles.Add(userRole);
                 }
-                _userRepository.Add(user);
                 _adminRepository.Add(admin);
             return new BaseResponse
             {
@@ -109,12 +109,16 @@ namespace Fort.Implementation.Service
                 Data = new AdminDto
                 {
                     Id = admin.Id,
-                    UserName = admin.FirstName+" "+admin.LastName,
-                    userRoles = admin.User.UserRoles.Select(e => e.Role.Name).ToList(),
+                    UserName = admin.FirstName + " " + admin.LastName,
                     Email = admin.User.Email,
                     Age = admin.User.Age,
                     Gender = admin.User.Gender,
+                    FirstName = admin.FirstName,
+                    LastName = admin.LastName,
+                    userRoles = admin.User.UserRoles.Select(e => e.Role.Name).ToList(),
+                    DateofBirth = admin.DateOfBirth,
                     PhoneNumber = admin.User.PhoneNumber,
+                    DateCreated = admin.CreatedOn
                 },
                 Message = "Get Successful",
                 Status = true
@@ -184,7 +188,7 @@ namespace Fort.Implementation.Service
                     Email = u.User.Email,
                     FirstName=u.FirstName,
                     LastName=u.LastName,
-                    Id = u.Id,
+                    Id = u.User.Id,
                     UserName = u.FirstName + " " + u.LastName,
                     PhoneNumber = u.User.PhoneNumber,
 
@@ -222,7 +226,6 @@ namespace Fort.Implementation.Service
                 user.LastModifiedOn= DateTime.Now;
                 admin.LastModifiedOn= DateTime.Now;
                 user.Email = request.EmailAddress;
-                user.PassWord = BCrypt.Net.BCrypt.HashPassword(request.PassWord);
                 
                 user.LastModifiedBy = user.Id;
                 admin.User.PhoneNumber = request.Phonenumber;
@@ -253,6 +256,14 @@ namespace Fort.Implementation.Service
                 };
             }
             var user = _userRepository.GetUser(admin.User.Id);
+            if(user == null)
+            {
+                return new BaseResponse
+                {
+                    Message = " user not found",
+                    Status = false,
+                };
+            }
             admin.IsDeleted = true;
             user.IsDeleted = true;
             admin.DeletedOn = DateTime.Now;

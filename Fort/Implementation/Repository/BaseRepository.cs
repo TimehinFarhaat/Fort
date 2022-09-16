@@ -92,7 +92,7 @@ namespace Fort.Implementation
 
       public T    GetByExpression(Expression<Func<T, bool>> expression)
         {
-            var entity= _context.Set<T>().FirstOrDefault(expression);
+            var entity= _context.Set<T>().SingleOrDefault(expression);
             return entity;
         }
 

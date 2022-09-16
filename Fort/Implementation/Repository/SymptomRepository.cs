@@ -15,8 +15,7 @@ namespace Fort.Implementation.Repository
 
         public Symptom GetSymptom(string name)
         {
-            var rol = _context.Symptoms.Include(x => x.SymptomCheckups)
-                               .SingleOrDefault(u => u.Name == name);
+            var rol = _context.Symptoms.Include(x => x.SymptomCheckups).FirstOrDefault(y=>y.Name == name);
             return rol;
         }
 

@@ -13,7 +13,7 @@ namespace Fort.Implementation.Repository
 
         public Patient GetPatientByUserId(int userId)
         {
-            var patient = _context.Patients.Where(u=>u.userId == userId).FirstOrDefault();
+            var patient = _context.Patients.Where(u=>u.User.Id == userId).FirstOrDefault();
             return patient;
 
         }

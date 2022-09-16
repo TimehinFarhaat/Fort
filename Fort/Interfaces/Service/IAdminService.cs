@@ -5,7 +5,7 @@ namespace Fort.Interfaces.Service
 {
     public interface IAdminService
     {
-        public BaseResponse AddAdmin(CreateAdminRequest Adminrequest);
+        public Task<BaseResponse> AddAdmin(CreateAdminRequest Adminrequest);
         public AdminResponsModel GetAdminById(int id);
         public AdminResponsModel GetAdminByEmail(string email);
         public BaseResponse UpdateAdmin(UpdateAdminRequest request, int id);

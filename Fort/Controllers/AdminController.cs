@@ -18,9 +18,9 @@ namespace Fort.Controllers
 
 
         [HttpPost("RegisterAdmin")]
-        public IActionResult RegisterAdmin([FromForm] CreateAdminRequest adminRequestmodel)
+        public async Task<IActionResult> RegisterAdmin([FromForm] CreateAdminRequest adminRequestmodel)
         {
-            var result = _adminService.AddAdmin(adminRequestmodel);
+            var result = await _adminService.AddAdmin(adminRequestmodel);
             return Ok(result);
         }
          
@@ -35,14 +35,14 @@ namespace Fort.Controllers
 
 
         [HttpGet("GetAdminDetailsById")]
-        public IActionResult GetAdminDetails(int id)
+        public IActionResult GetAdminDetailsById(int id)
         {
             var result = _adminService.GetAdminById(id);
             return Ok(result);
         }
 
         [HttpGet("GetAllAdmins")]
-        public IActionResult GetAllAdmin()
+        public IActionResult GetAllAdmins()
         {
             var result = _adminService.GetAdmins();
             return Ok(result);
@@ -50,7 +50,7 @@ namespace Fort.Controllers
 
 
         [HttpPatch("UpdateAdmin")]
-        public IActionResult UpdateDoctor(UpdateAdminRequest adminRequestmodel, int id)
+        public IActionResult UpdateAdmin([FromForm]UpdateAdminRequest adminRequestmodel, int id)
         {
             var result = _adminService.UpdateAdmin(adminRequestmodel, id);
             return Ok(result);
@@ -64,11 +64,5 @@ namespace Fort.Controllers
             var result = _adminService.GetAdminByEmail(email);
             return Ok(result);
         }
-
-
-  
-
-
-
-    }
+     }
 }

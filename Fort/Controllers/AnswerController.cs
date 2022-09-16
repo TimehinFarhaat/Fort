@@ -17,10 +17,11 @@ namespace Fort.Controllers
         }
 
         [HttpPost("AnswerQuestion")]
-        public IActionResult AnswerQuestion(CreateAnswerRequest request, int questionId,int doctorId)
+        public IActionResult AnswerQuestion(CreateAnswerRequest request, [FromQuery]int questionId, [FromQuery] int doctorId)
         {
             var result = _answerService.CreateAnswer(request, questionId,doctorId);
-            return Ok(result.Message);
+           if(!result.Status) return BadRequest(result);
+           return Ok(result);
         }
 
 
@@ -31,17 +32,35 @@ namespace Fort.Controllers
             return Ok(result);
         }
 
+        
 
 
         [HttpGet("GetAnswersByDoctorId")]
-        public IActionResult GetAnswer(int doctorId)
+        public IActionResult GetAnswersByDoctorId([FromQuery]int doctorId)
         {
              var result = _answerService.GetDoctorAnswers(doctorId);
             return Ok(result);
         }
 
 
-        [HttpGet("GetAnswersToQuestion")]
+        [HttpPost("RateAnswer/{id}")]
+        public IActionResult RateAnswer([FromRoute]int id)
+        {
+            var result = _answerService.AddRating(id);
+            return Ok(result);
+        }
+
+
+        [HttpPost("RemoveAnswerRate/{id}")]
+        public IActionResult RemoveAnswerRate([FromRoute] int id)
+        {
+            var result = _answerService.AddRating(id);
+            return Ok(result);
+
+        }
+
+
+            [HttpGet("GetAnswersToQuestion")]
         public IActionResult GetAnswersToQuestion(int questionId)
         {
             var result = _answerService.GetAnswersToQuestion(questionId);

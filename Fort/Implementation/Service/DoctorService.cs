@@ -13,88 +13,94 @@ namespace Fort.Implementation.Service
         private readonly IPatientRepository _patientRepository;
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
+        private readonly INumberVerificationService _numberVerificationService;
 
-        public DoctorService(IDoctorRepository doctorRepository, IUserRepository userRepository, IRoleRepository roleRepository,IPatientRepository patientRepository)
+        public DoctorService(IDoctorRepository doctorRepository, IPatientRepository patientRepository, IUserRepository userRepository, IRoleRepository roleRepository, INumberVerificationService numberVerificationService)
         {
-            _doctorRepository = doctorRepository ;
-            _userRepository = userRepository ;
-             _roleRepository = roleRepository;
-            _patientRepository = patientRepository ;
-
+            _doctorRepository = doctorRepository;
+            _patientRepository = patientRepository;
+            _userRepository = userRepository;
+            _roleRepository = roleRepository;
+            _numberVerificationService = numberVerificationService;
         }
 
-
-        public BaseResponse AddDoctor(CreateDoctorRequest Doctorrequest, int AdminId)
+        public async Task<BaseResponse> AddDoctor(CreateDoctorRequest Doctorrequest, int AdminId)
         {
-            var a = _userRepository.GetByExpression(s => s.Email == Doctorrequest.Email);
+            var a = _userRepository.GetUser(Doctorrequest.Email);
 
             if (a != null)
             {
                 return new BaseResponse
                 {
-                    Message = "Patient already exist",
+                    Message = "Doctor already exist",
                     Status = false
+
                 };
             }
-            var user = new User
+            else
             {
-                Email = Doctorrequest.Email,
-                PassWord = BCrypt.Net.BCrypt.HashPassword(Doctorrequest.PassWord),
-                CreatedBy = AdminId,
-                PhoneNumber = Doctorrequest.PhoneNumber,
-                Age = Doctorrequest.Age,
-                Gender= Doctorrequest.Gender,
-                CreatedOn = DateTime.Now,
-                IsDeleted = false,
-                
-                LastModifiedBy = AdminId,
-                
-            };
-            List<string> s = new List<string> { "Admin" };
-
-            var roles = _roleRepository.GetSelectedUserRole(s);
-
-            var doctor = new Doctor
-            {
-                FirstName = Doctorrequest.FirstName,
-                LastName = Doctorrequest.LastName,
-                User = user,
-                CreatedOn = DateTime.Now,
-                IsDeleted = false,
-               
-               
-               CertificatePath=Doctorrequest.Certificate,
-               Specialization=Doctorrequest.Specialization,
-                LastModifiedBy = AdminId,
-                CreatedBy = AdminId,
-                UserId = user.Id
-            };
-
-            foreach (var role in roles)
-            {
-                var userRole = new UserRole
+                var user = new User
                 {
+                    Email = Doctorrequest.Email,
+                    PassWord = BCrypt.Net.BCrypt.HashPassword(Doctorrequest.PassWord),
+                    CreatedBy = 1,
+                    PhoneNumber = Doctorrequest.PhoneNumber,
+                    Age = Doctorrequest.Age,
+                    Gender = Doctorrequest.Gender,
                     CreatedOn = DateTime.Now,
                     IsDeleted = false,
-                    LastModifiedBy = AdminId,
-                    CreatedBy = AdminId,
-                    Role = role,
-                    RoleId = role.Id,
+                    LastModifiedBy = 1,
+
+                };
+                await _numberVerificationService.VerifyMobileNumber(Doctorrequest.PhoneNumber);
+
+                _userRepository.Add(user);
+
+                List<string> s = new List<string> { "Doctor" };
+                var roles = _roleRepository.GetSelectedUserRole(s);
+                var doctor = new Doctor
+                {
+                    FirstName = Doctorrequest.FirstName,
+                    LastName = Doctorrequest.LastName,
                     User = user,
+                    CreatedOn = DateTime.Now,
+                    IsDeleted = false,
+
+
+                    CertificatePath = Doctorrequest.Certificate,
+                    Specialization = Doctorrequest.Specialization,
+                    LastModifiedBy = 1,
+                    CreatedBy = 1,
                     UserId = user.Id
                 };
-                user.UserRoles.Add(userRole);
-            }
-            _doctorRepository.Add(doctor);
-           
-            _userRepository.Add(user);
 
-            return new BaseResponse
-            {
-                Message = "Successfully added",
-                Status = true
-            };
+                foreach (var role in roles)
+                {
+                    var userRole = new UserRole
+                    {
+                        CreatedOn = DateTime.Now,
+                        IsDeleted = false,
+                        LastModifiedBy = 1,
+                        CreatedBy = 1,
+                        Role = role,
+                        RoleId = role.Id,
+                        User = user,
+                        UserId = user.Id
+                    };
+                    user.UserRoles.Add(userRole);
+                }
+                _doctorRepository.Add(doctor);
+
+                return new BaseResponse
+                {
+                    Message = "Successfully added",
+                    Status = true
+                };
+            }
         }
+
+
+        
 
 
 
@@ -114,8 +120,22 @@ namespace Fort.Implementation.Service
                     Status = false,
                 };
             }
-            doctor.IsDeleted = true;
+            var user = _userRepository.GetUser(doctor.User.Id);
+                   doctor.IsDeleted = true;
             _doctorRepository.Update(doctor);
+            if (user== null)
+             {
+                return new BaseResponse()
+                {
+                    Message = " user does not exist",
+                    Status = false,
+                };
+             }
+
+         
+            user.IsDeleted = true;
+            _userRepository.Update(user);
+            
             return new BaseResponse()
             {
                 Message = "deleted successful",
@@ -189,6 +209,7 @@ namespace Fort.Implementation.Service
                     LastName = doctor.LastName,
                     userRoles = doctor.User.UserRoles.Select(e => e.Role.Name).ToList(),
                     Email = doctor.User.Email,
+                    Age = doctor.User.Age,
                     Gender= doctor.User.Gender,
                     Specialization = doctor.Specialization,
                     PhoneNumber = doctor.User.PhoneNumber,
@@ -270,10 +291,13 @@ namespace Fort.Implementation.Service
             {
                 Data = doctors.Select(doctor=>new DoctorDto
                 {
-                    Id = doctor.Id,
+                    Id = doctor.UserId,
                     FirstName = doctor.FirstName,
                     LastName = doctor.LastName,
                     Email = doctor.User.Email,
+                    Age=doctor.User.Age,
+                    Gender=doctor.User.Gender,
+                    UserName=doctor.FirstName +" "+doctor.LastName,
                     Specialization = doctor.Specialization,
                     PhoneNumber = doctor.User.PhoneNumber,
                 }).ToList(),
@@ -313,7 +337,6 @@ namespace Fort.Implementation.Service
                 doctor.User = user;
                 doctor.User.Email = request.EmailAddress;
                 user.Email = request.EmailAddress;
-                user.PassWord = BCrypt.Net.BCrypt.HashPassword(request.PassWord);
                 doctor.User.PhoneNumber = request.PhoneNumber;
                 user.CreatedBy = user.Id;
                 user.LastModifiedBy = user.Id;

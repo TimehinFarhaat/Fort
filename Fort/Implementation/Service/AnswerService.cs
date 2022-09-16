@@ -15,7 +15,8 @@ namespace Fort.Implementation.Service
         private readonly IDoctorRepository _doctorRepository;
         private readonly IQuestionRepository _questionRepository;
         private readonly IResponseService _responseService;
-        public AnswerService( IAdminRepository adminRepository, IUserRepository userRepository, IQuestionRepository questionRepository,IAnswerRepository answerRepository,IResponseService responseService,IDoctorRepository doctorRepository)
+        private readonly IPatientRepository _patientRepository;
+        public AnswerService( IAdminRepository adminRepository, IUserRepository userRepository, IQuestionRepository questionRepository,IAnswerRepository answerRepository,IResponseService responseService,IDoctorRepository doctorRepository,IPatientRepository patientRepository)
         {
             
             _adminRepository = adminRepository;
@@ -24,6 +25,8 @@ namespace Fort.Implementation.Service
             _questionRepository = questionRepository;
             _answerRepository = answerRepository;
             _responseService = responseService;
+            _patientRepository = patientRepository;
+            
         }
 
         public BaseResponse CreateAnswer(CreateAnswerRequest answers, int questionID, int DoctorId)
@@ -64,9 +67,11 @@ namespace Fort.Implementation.Service
 
 
                 };
+                var patient=_patientRepository.GetpatientById(user.Id);
+              var questioneer= _userRepository.GetByExpression(v=>v.Id== question.Patient.Id);
                 _answerRepository.Add(answer);
-                var response = _responseService.SendResponse(user.PhoneNumber);
-                if (response.Status != TaskStatus.Faulted)
+                var response = _responseService.SendResponse(questioneer.PhoneNumber,answer.Description);
+                if (response.Status == TaskStatus.Faulted)
                 {
                     return new BaseResponse
                     {
@@ -125,7 +130,9 @@ namespace Fort.Implementation.Service
                 {
                     Description = c.Description,
                     QuestionDescription =c.Question.Description,
-                    Rating = c.Rating,
+                    AnswerId=c.Id,
+                    NegativeRating = c.NegativeRating,
+                    PositiveRating=c.NegativeRating,
                     DoctorName=c.Doctor.FirstName+" "+c.Doctor.LastName
                 }).ToList(),
 
@@ -134,6 +141,60 @@ namespace Fort.Implementation.Service
             };
 
         }
+
+
+
+
+        public BaseResponse AddRating(int Id)
+        {
+            var answer = _answerRepository.GetByExpression(s => s.Id == Id);
+            if (answer== null)
+            { 
+                return new BaseResponse
+                {
+                    Message = "Answer does not exist",
+                    Status = false
+                };
+            }
+            else
+            {
+                answer.PositiveRating += 1;
+                _answerRepository.Update(answer);
+                return new BaseResponse
+                {
+                    Message = "Successful",
+                    Status = true,
+                };
+            }
+       
+        }
+
+
+        public BaseResponse RemoveRating(int Id)
+        {
+            var answer = _answerRepository.GetByExpression(s => s.Id == Id);
+            if (answer == null)
+            {
+                return new BaseResponse
+                {
+                    Message = "Answer does not exist",
+                    Status = false
+                };
+            }
+            else
+            {
+                answer.PositiveRating -= 1; 
+                answer.NegativeRating  += 1;
+                _answerRepository.Update(answer);
+                return new BaseResponse
+                {
+                    Message = "Successful",
+                    Status = true,
+                };
+            }
+
+        }
+
 
 
         public AnswersResponse GetDoctorAnswers(int DoctorId)
@@ -164,14 +225,14 @@ namespace Fort.Implementation.Service
                 {
                     Description = c.Description,
                     AnswerId=c.Id,
-                    
-                    Rating=c.Rating,
+                    NegativeRating=c.NegativeRating,
+                    PositiveRating=c.PositiveRating,
                     QuestionDescription=c.Question.Description,
                     DoctorName = c.Doctor.FirstName + " " + c.Doctor.LastName
                 }).ToList(),
 
                 Message = "answers",
-                Status = false
+                Status = true,
             };
 
         }

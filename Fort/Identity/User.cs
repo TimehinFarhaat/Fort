@@ -4,7 +4,7 @@ namespace Fort.Identity
 {
     public class User:Auditable_entity
     {
-      
+
         public string Email { get; set; }
         public string PassWord { get; set; }
         public string PhoneNumber { get; set; }
@@ -13,7 +13,7 @@ namespace Fort.Identity
         public Admin Admin { get; set; }
         public Patient Patient { get; set; }
         public Doctor Doctor { get; set; }
-        public ICollection<Question> Questions { get; set; } = new HashSet<Question>();
+        public ICollection<View> Views { get; set; } = new HashSet<View>();
         public ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
 
     }

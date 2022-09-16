@@ -25,14 +25,15 @@ namespace Fort.Implementation.Service
         {
             var user=_userRepository.GetUser(userId);
                                                                                                              
-            if(user != null )
+            if(user != null ) 
             {
+                var patient=_patientRepository.GetpatientById(user.Id);
                 var question = new Question
                 {
                     Description = questions.Description,
                     CreatedBy=userId,
-                    UserId=user.Id,
-                    User=user,
+                    PatientId=patient.Id,
+                    Patient=patient,
                     LastModifiedBy=userId,
                 };
                 
@@ -82,6 +83,7 @@ namespace Fort.Implementation.Service
         public QuestionsResponse GetQuestions()
         {
             var questions = _questionRepository.GetQuestions();
+            
 
             if (questions.Count != 0)
             {
@@ -95,7 +97,10 @@ namespace Fort.Implementation.Service
                         {
                            Description = y.Description,
                             DoctorName = y.Doctor.FirstName + y.Doctor.LastName,
-                            Rating = y.Rating,
+                           PositiveRating = y.PositiveRating,
+                           NegativeRating = y.NegativeRating,
+                           AnswerId = x.Id,
+                           
                         }).ToList()
 
                     }).ToList(),
@@ -130,7 +135,8 @@ namespace Fort.Implementation.Service
                             AnswerId=y.Id,
                             DoctorName = y.Doctor.FirstName + y.Doctor.LastName,
                             QuestionDescription = questions.Description,
-                            Rating = y.Rating,
+                            NegativeRating = y.NegativeRating,
+                            PositiveRating=y.PositiveRating,
                         }).ToList()
 
                     },
@@ -160,18 +166,18 @@ namespace Fort.Implementation.Service
                     Status = false
                 };
             }
-            //var p=_patientRepository.GetpatientById(user.Id);
+            var p = _patientRepository.GetpatientById(user.Id);
 
-            //if (p == null)
-            //{
-            //    return new QuestionsResponse
-            //    {
-            //        Message = "unSuccessful",
-            //        Status = false
-            //    };
+            if (p == null)
+            {
+                return new QuestionsResponse
+                {
+                    Message = "Patient does not exist",
+                    Status = false
+                };
 
-              
-            //}
+
+            }
             var questions = _questionRepository.GetUserQuestions(user.Email);
             if (questions.Count > 0)
             {
@@ -185,7 +191,9 @@ namespace Fort.Implementation.Service
                             Description = y.Description,
                             DoctorName = y.Doctor.FirstName + y.Doctor.LastName,
                             QuestionDescription = y.Description,
-                            Rating = y.Rating,
+                            NegativeRating = y.NegativeRating,
+                            AnswerId=y.Id,
+                            PositiveRating=y.PositiveRating,
                         }).ToList()
 
                     }).ToList(),
@@ -200,5 +208,8 @@ namespace Fort.Implementation.Service
             };
 
         }
+
+
+
     }
 }
