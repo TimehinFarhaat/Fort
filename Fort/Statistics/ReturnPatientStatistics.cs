@@ -161,7 +161,7 @@ namespace Fort.Statistics
             }
             foreach (var question in checkedQuestions)
             {
-                foreach (var answer in question.Answers)
+                foreach (var answer in question.Answers) 
                 {
                     foreach (var view in views)
                     {
